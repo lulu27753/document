@@ -1,0 +1,59 @@
+1.Array
+1.1 arrayEqual
+
+2.Class
+2.1 addClass
+2.2 hasClass
+2.3 removeClass
+
+3.Cookie
+3.1 getCookie
+3.2 removeCookie
+3.3 setCookie
+
+4.Device
+4.1 getExplore
+4.2 getOS
+
+5.Dom
+5.1 getScrollTop
+5.2 offset
+5.3 scrollTo
+5.4 setScrollTop
+
+6.Keycode
+6.1 getKeyName
+
+7.Object
+7.1 deepClone
+7.2 isEmptyObject
+
+8.Random
+8.1 randomColor
+8.2 randomNum
+
+9.Regexp
+9.1 isEmail
+9.2 isIdCard
+9.3 isPhoneNum
+9.4 isUrl
+
+10.String
+10.1 digitUppercase
+
+11.Support
+11.1 isSupportWebP
+
+12.Time
+12.1 formatPassTime
+12.2 formatRemainTime
+
+13.Url
+13.1 parseQueryString
+13.2 stringfyQueryString
+
+14.Function
+14.1 throttle
+14.2 debounce
+
+

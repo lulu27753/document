@@ -1,0 +1,10 @@
+- vue-li:vue的脚手架工具，负责目录结构|本地调试|代码部署|热加载|单元测试
+- cnpm install -g vue-cli
+- vue init <template-name> <project-name>
+- vue init webpack my-project
+- vue list 可以使用的模板
+- ESlint 预设模板：Standard|AirBNB|none
+- GUI项目更多的是基于界面的测试，忽略Karma|Mocha|e2e测试
+- cd <project-name>
+- npm i
+- npm run dev
