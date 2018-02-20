@@ -271,3 +271,194 @@
 // console.log(iterator.next())
 
 
+// // 生成器返回语句
+// // return 表示所有操作已完成，属性done被设置为true，
+// // 如果同时提供了相应的值，则属性value会被设置为这个值
+// function *createIterator() {
+//   yield 1;
+//   return 42;
+//   yield 2;
+//   yield 3;
+// }
+// let iterator = createIterator();
+// console.log(iterator.next())// {value: 1, done: false}
+// console.log(iterator.next())// {value: 42, done: true}
+// console.log(iterator.next())// {value: undefined, done: true}
+// console.log(iterator.next())// {value: undefined, done: true}
+
+// // 委托生成器(yield *)
+// function *createNumberIterator() {
+//   yield 1;
+//   yield 2;
+// }
+// function *createColorIterator() {
+//   yield 'red';
+//   yield 'green';
+// }
+// function *createCombinedIterator() {
+//   yield *createNumberIterator();
+//   yield *createColorIterator();
+//   yield true;
+// }
+
+// let iterator = createCombinedIterator();
+
+// console.log(iterator.next())// {value: 1, done: false}
+// console.log(iterator.next())// {value: 2, done: false}
+// console.log(iterator.next())// {value: "red", done: false}
+// console.log(iterator.next())// {value: "green", done: false}
+// console.log(iterator.next())// {value: true, done: false}
+// console.log(iterator.next())// {value: undefined, done: false}
+
+// // 生成器的返回值和委托生成器的混合使用
+// function *createNumberIterator() {
+//   yield 1;
+//   yield 2;
+//   return 3;
+// }
+// function *createRepeatingIterator(count) {
+//   for (let i = 0; i < count; i++) {
+//     yield "repeat";
+//   }
+// }
+// function *createCombinedIterator() {
+//   let result = yield *createNumberIterator();
+//   // 返回值3永远只存在于这个生成器的内部，永远不会被返回
+//   // 如果想输出这个值，只能再添加一个yield语句
+//   // yield result;
+//   yield *createRepeatingIterator(result);
+// }
+// var iterator = createCombinedIterator();
+// console.log(iterator.next()) // {value: 1, done: false}
+// console.log(iterator.next()) // {value: 2, done: false}
+// // console.log(iterator.next()) // {value: 3, done: false} 新添加的yield语句显示输出了第一个生成器的返回值
+// console.log(iterator.next()) // {value: "repeat", done: false}
+// console.log(iterator.next()) // {value: "repeat", done: false}
+// console.log(iterator.next()) // {value: "repeat", done: false}
+// console.log(iterator.next()) // {value: "repeat", done: false}
+
+// // 传统异步：调用一个函数并执行响应的回调函数
+// let fs = require('fs')
+// fs.readFile('config.json', function(err, contents) {
+//   if (err) {
+//     throw err;
+//   }
+
+//   doSomethingWith(contents)
+//   console.log('Done')
+// })
+
+
+// // 函数run接收一个生成器函数作为参数
+// // 生成器函数定义了后续要执行的任务，生成一个迭代器并存在task中
+// function run(taskDef) {
+//   // 创建一个无使用限制的迭代器
+//   let task = taskDef();
+//   // 开始执行任务
+//   let result = task.next();
+
+//   // 循环调用next()的函数
+//   function step() {
+//     // 如果任务未完成，则继续执行
+//     if (!result.done) {
+//       result = task.next()
+//       step()
+//     }
+//   }
+//   // 开始迭代执行
+//   step();
+// }
+// // 
+// run(function *() {
+//   console.log(1);
+//   yield;
+//   console.log(2)
+//   yield;
+//   console.log(3)
+// })
+
+// // 向任务执行器传递数据
+// function run(taskDef) {
+//   // 创建一个无使用限制的迭代器
+//   let task = taskDef();
+
+//   // 开始执行任务
+//   let result = task.next();
+
+//   // 循环调用next()的函数
+//   function step() {
+//     if (!result.done) {
+//       result = task.next(result.value)
+//       step();
+//     }
+//   }
+//   // 开始迭代执行
+//   step();
+// }
+// run(function *() {
+//   let value = yield 1;
+//   console.log(value);// 1
+
+//   value = yield value + 3;
+//   console.log(value);// 4
+// })
+
+// 异步任务执行器
+// 通过延迟方法模仿异步调用
+function fetchData() {
+  return function (callback) {
+    setTimeout(() => {
+      callback(null, 'Hi!')
+    }, 50);
+  }
+}
+// 修改任务执行器
+function run(taskDef) {
+  // 创建一个无使用限制的迭代器
+  let task = taskDef();
+
+  // 开始执行任务
+  let result = task.next();
+
+  // 循环调用next()
+  function step() {
+    //  如果任务未完成，则继续执行
+    if (!result.done) {
+      if (typeof result.value === 'function') {
+        // 传入一个回调函数作为参数来调用它
+        // 回调函数遵循Node中关于执行错误的约定：
+        // 第一个参数：所有可能的错误
+        // 第二个参数：结果
+        result.value(function (err, data) {
+          if (err) {
+            // 如果执行过程中产生了错误，则正确输出错误对象
+            result = task.throw(err);
+            return;
+          }
+
+          result = task.next(data);
+          step();
+        })
+      } else {
+        result = task.next(result.value);
+        step();
+      }
+    }
+  }
+  // 开始迭代执行
+  step();
+}
+// 从文件中读取数据
+let fs = require('fs')
+
+function readFile(filename) {
+  return function (callback) {
+    fs.readFile(filename, callback);
+  };
+}
+run(function *() {
+  let contents = yield readFile('config.json')
+  doSomethingWith(contents);
+  console.log('Done');
+})
+
