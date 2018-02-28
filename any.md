@@ -24,3 +24,6 @@ service worker，pouchdb对离线体验的加持，以上几个库都没polymer�
 你要改变心态，要增长才干，积累阅历，这样你才有得选。
 
 村上春树：你要做一个不动声色的大人了，不准情绪化，不准偷偷想念，不准回头看，去过自己另外的生活，你要听话，不是所有的鱼都会生活在同一片海里。
+
+“If you cannot measure it, you cannot improve it” ———— William Thomson
+You need to be right before being good

@@ -452,12 +452,16 @@ function run(taskDef) {
 let fs = require('fs')
 
 function readFile(filename) {
+  console.log(function (callback) {
+    fs.readFile(filename, callback);
+  })
   return function (callback) {
+    console.log(callback)
     fs.readFile(filename, callback);
   };
 }
 run(function *() {
-  let contents = yield readFile('config.json')
+  let contents = yield readFile('./object.js')
   doSomethingWith(contents);
   console.log('Done');
 })
