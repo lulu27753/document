@@ -22,6 +22,8 @@
 
 # 1. 前言
 
+性能判定标准 + 搭建性能优化指标采集环境 + 性能优化解决方案
+
 [性能优化工具](https://www.w3cplus.com/performance/performance-tools.html)
 
 # 2. 性能关注指标
@@ -63,7 +65,7 @@
 ### 4.1.1. 图片格式(启用webp)
 
 >WebP是一种支持有损压缩和无损压缩的图片文件格式，派生自视频编码格式 VP8。无损压缩后的 WebP 比 PNG 文件少了 26％ 的文件大小，有损压缩在具有同等SSIM索引的情况下WebP 比 JPEG 文件少25-34%的文件大小。WebP支持无损透明度（也叫做alpha通道），支持动画格式Animated WebP 。
-页面加载时进行环境探测, 如页面渲染环境支持WebP就替换页面中的图片链接为WebP格式的版本。
+页面加载时进行v 环境探测, 如页面渲染环境支持WebP就替换页面中的图片链接为WebP格式的版本。
 
 [WebP格式转换](https://developers.google.com/speed/webp/download)
 

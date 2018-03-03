@@ -1,29 +1,38 @@
 # 随心随想随笔
 
-pwa是优化web app，
-rn|weex|react native是用web栈搞native的事
+* pwa是优化web app，
+* rn|weex|react native是用web栈搞native的事
 
-PWA:
-渐进式：能确保每个用户都能打开网页
-响应式：PC，手机，平板，不管哪种格式，网页格式都能完美适配
-离线应用：支持用户在没网的条件下也能打开网页，这里就需要 Service Worker 的帮助
-APP 化：能够像 APP 一样和用户进行交互常
-更新：一旦 Web 网页有什么改动，都能立即在用户端体现出来
-安全：安全第一，给自己的网站加上一把绿锁--HTTPS
-可搜索：能够被引擎搜索到推送：做到在不打开网页的前提下，推送新的消息
-可安装：能够将Web像APP一样添加到桌面可跳转：只要通过一个连接就可以跳转到你的 Web 页面
+* PWA:
+    * 渐进式：能确保每个用户都能打开网页
+    * 响应式：PC，手机，平板，不管哪种格式，网页格式都能完美适配
+    * 离线应用：支持用户在没网的条件下也能打开网页，这里就需要 Service Worker 的帮助
+    * APP 化：能够像 APP 一样和用户进行交互常
+    * 更新：一旦 Web 网页有什么改动，都能立即在用户端体现出来
+    * 安全：安全第一，给自己的网站加上一把绿锁--HTTPS
+    * 可搜索：能够被引擎搜索到推送：做到在不打开网页的前提下，推送新的消息
+    * 可安装：能够将Web像APP一样添加到桌面可跳转：只要通过一个连接就可以跳转到你的 Web 页面
 
-Web要做的是把组件化、离线缓存、本地API、通知接口、自适应设备做好
-service worker强大的网络请求拦截可以帮助用户更好的原生APP体验。PWA存在的问题主要是浏览器的兼容问题
-service worker，pouchdb对离线体验的加持，以上几个库都没polymer做得好。
+* Web要做的是把组件化、离线缓存、本地API、通知接口、自适应设备做好
+* service worker强大的网络请求拦截可以帮助用户更好的原生APP体验。PWA存在的问题主要是浏览器的兼容问题
+* service worker，pouchdb对离线体验的加持，以上几个库都没polymer做得好。
 
-乔布斯：Design is not just what it looks like and feels like. Design is how it works
+* 乔布斯：Design is not just what it looks like and feels like. Design is how it works
 
-《死亡诗社》：我步入丛林，因为我希望活得深刻，吸取生命中所有的精华，把非生命的一切都击溃，以免当我生命终结时，发现自己从没有活过。
-你要拼尽全力在年轻的时候给自己足够多的机会，创造更多的可能。
-你要改变心态，要增长才干，积累阅历，这样你才有得选。
+* 《死亡诗社》：我步入丛林，因为我希望活得深刻，吸取生命中所有的精华，把非生命的一切都击溃，以免当我生命终结时，发现自己从没有活过。
+* 你要拼尽全力在年轻的时候给自己足够多的机会，创造更多的可能。
+* 你要改变心态，要增长才干，积累阅历，这样你才有得选。
 
-村上春树：你要做一个不动声色的大人了，不准情绪化，不准偷偷想念，不准回头看，去过自己另外的生活，你要听话，不是所有的鱼都会生活在同一片海里。
+* 村上春树：你要做一个不动声色的大人了，不准情绪化，不准偷偷想念，不准回头看，去过自己另外的生活，你要听话，不是所有的鱼都会生活在同一片海里。
 
-“If you cannot measure it, you cannot improve it” ———— William Thomson
-You need to be right before being good
+* “If you cannot measure it, you cannot improve it” ———— William Thomson
+* You need to be right before being good
+* try...catch...finally: 在保持代码运行的同时，处理给定代码块中可能发生的部分或所有错误的方法。如果出现了未处理的错误，JS将提供常规错误消息。
+    * try块包含可能引发错误的代码
+    * catch块包含处理部分或所有错误的代码
+    * 如果try块中发生错误，则程序控件将传递exception的值给catch块
+    * 如果未发生错误，则绝不执行catch块中的代码
+    * 可以通过使用throw语句重新引发错误来将错误传递到下一级别
+    * 在执行try块中的所有语句并在catch块中完成错误处理后，无论是否已处理错误，都将执行finally块中的语句。
+    * finally块中的代码保证能运行，除非发生未处理的错误（例如，catch块内发生的运行时错误）
+* 只有理解细节，才有可能在特定场景里进行优化和创造

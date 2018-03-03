@@ -26,7 +26,7 @@
 
 > 参数：CONFIG(object)
 
-创建一个ReactClass(组件类)，参数是一个对象且必须带有render属性方法，该方法必须返回一个封闭的容器(容器内可以有其他不限结构的容器)或null/false(表示啥都不渲染)
+创建一个ReactClass(注册组件类)，参数是一个对象且必须带有render属性方法，该方法必须返回一个封闭的容器(容器内可以有其他不限结构的容器)或null/false(表示啥都不渲染)
 
 ```__react
 var Component = React.createClass({
@@ -43,7 +43,7 @@ React.render(<Component a = '1' />, document.body);
 
 > 参数：TYPE(string|ReactClass),[PROPS(object)],[CHILDREN(ReactElement)]
 
-创建一个指定类型的React元素，注意第三个参数children可以是任意个React元素：
+创建一个指定类型的ReactElement，注意第三个参数children可以是任意个React元素：
 
 ```__react
 var Component = React.createClass({
