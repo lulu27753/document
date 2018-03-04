@@ -42,7 +42,51 @@
     * 确实需要与浏览器交互，则应在生命周期函数中设置
     * 其返回的内容是子组件层级树实例在特定时间的一个描述，React会根据这个描述进行差异分析，再生成实际的组件实例
 * 实例化阶段：
-    * getInitialState():用于对本组件实例的state初始数据，赋予组件实例的默认值
-    * componentWillMount()：
-    * render()
-    * componentDidMount()
+    * getInitialState():用于对本组件实例的state初始数据，赋予组件实例的默认值，对于每一组组件实例，该方法会被调用且仅调用一次
+    * componentWillMount()：在初始化渲染执行之前立刻调用，该方法只执行一次。如果在这个方法内调用setState(),render()将会感知到更新后的state
+    * render()：该方法用于创建虚拟DOM，表示组件的输出.其返回的虚拟DOM被用于与浏览器DOM进行对比，并决定最终要更新的浏览器DOM内容。
+        * 只能读取props和state,不能更改其中的值
+        * 只能返回一个ReactElement元素或者null|false
+    * componentDidMount()：在render()被调用，浏览器DOM被渲染后，该方法被调用。此时的浏览器DOM已经被创建，且可通过调用this.getDOMNode获得对应的浏览器DOM元素。该方法可用于对浏览器DOM做进一步修改或其他操作。通常在这个方法里进行state数据的填充，如进行AJAX请求；如果要和jQuery集成，也是在该函数操作。
+* 活动阶段:对用户事件的响应，通常会引发state的改变，进而导致组件的界面被刷新
+    * componentWillReceiveProps():在接收到新的props的时候被调用。是在prop传入之后渲染之前更新state的最佳时机。旧的props可以通过this.props获取到。在该函数中调用this.setState()不会引起第二次渲染。如果需要在state改变的时候执行一些操作，应使用componentWillUpdate()
+    * shouldComponentUpdate():手动控制组件是否需要更新。如果返回false,则render() | componentWillUpdate() | componentDidUpdate()均会被忽略，直到下一次state改变。如果确实遇到了性能瓶颈，可以考虑小心地使用以提升应用的性能，但需要仔细确认在带来明显的性能提升的同时并不会引发逻辑上的混乱，应尽量谨慎使用。
+    * componentWillUpdate():在接收到新的props或者state之前立刻调用，不能在该方法中使用this.setState()
+    * componentDidUpdate():在组件的更新已经同步到DOM中之后立刻被调用，使用该方法可以在组件更新之后操作DOM元素
+    * componentWillUnmount():在组件从DOM中移除的时候立刻被调用。在该方法中执行任何必要的清理，比如无效的定时器，或者清除在componentDidMount中创建的DOM元素。
+* 事件响应
+    * 事件代理：在顶层使用一个全局的事件监听器监听所有事件。React在内部维护一个映射表记录事件与组件事件处理函数的对应关系，当某个事件发生时，React根据这个内部映射表将事件分派给指定的事件处理函数。当映射表中没有事件处理函数时，不做任何操作。当一个组件安装或卸载时，相应的事件处理函数会自动被添加到事件监听器的内部映射表中或从表中删除
+    * 事件自动绑定：事件的回调函数被绑定在React组件上，而不是原始的元素上，即事件的回调函数中this所指的是组件实例而不是DOM元素。React通过一个autobinding的过程自动将回调函数绑定到当前的组件实例上。
+* 合成事件：React中事件处理程序所接收的事件参数是“合成事件（SyntheticEvent)"的实例。合成事件是跨浏览器原生事件跨浏览器的封装，并与浏览器原生事件有着同样的接口，而且这些接口是跨浏览器兼容的。每个合成事件实例都有以下通用属性：
+    * boolean bubbles
+    * boolean cancelable
+    * DOMEventTarget currentTarget
+    * boolean defaultPrevented
+    * Number eventPhase
+    * boolean isTrusted
+    * DOMEvent nativeEvent
+    * void preventDefault()
+    * void stopPropagation()
+    * DOMEventTarget target
+    * Date timeStamp
+    * String type
+* 组件的其他成员：
+    * string displayName:用于输出调试信息
+    * object getDefaultProps:在实例创建前调用，因此不能依赖于this.props。另外其返回的任何复杂对象在实例间共享，而不是每个实例拥有一份
+    * array mixins:用于定义在多个组件间共享的函数代码。在组件的mixin中定义的函数会自动合并，成为组件的成员函数。
+    * object statics:用来定义可以在组件类上调用的静态方法
+* 哪些组件应该有state:对用户输入、服务器请求、时间变化等需要作出响应并暂存中间状态时
+* 哪些数据应该放入state：包括可能被组件的事件处理器改变并触发用户界面更新的数据
+* 哪些数据不该放入state:
+    * 计算所得数据
+    * React组件
+    * 基于props的重复数据
+* children:
+    * React.Children.map()
+    * React.Children.forEach()：类似map,但不返回对象
+    * React.Children.count():返回children中包含的组件总数
+    * React.Children.only():返回children中仅有的子组件，如果子组件不存在或不唯一则会抛出异常
+    * React.Children.toArray():返回由各子元素组成的数组，常用于渲染事件中操作子元素集合，如重新排序或分割子元素等场合
+* 脚手架
+    * [React Starter Kit — (Node.js, Express, GraphQL, React.js, Babel, PostCSS, Webpack, Browsersync)](https://github.com/kriasoft/react-starter-kit)
+    * [React-Boilerplate](https://www.reactboilerplate.com/)
