@@ -110,6 +110,67 @@
         * 属性转换器：想要的组件与现有组件在功能上相似，但组件的参数并不一致时使用。
         * 数据请求和数据展现逻辑分离
     * 动态子集：通过给每个子组件都赋予一个唯一标识key来确保子组件在多个渲染阶段保持自己的特征和状态。当遇到带有Key的子组件时，React会确保它们被重新排序而不是重建，key只对组件有效，对HTML元素不起任何作用。
+* 绑定React未提供的事件：React的事件是面向虚拟DOM的，对于未提供的有些真实的浏览器DOM事件，需要在componentDidMount中获取对应的真实DOM元素绑定事件，并在componentWillUnmount中取消事件绑定。这种技巧也常用于React与jQuery结合使用。
+* 通过AJAX加载初始数据：AJAX请求的源URL应该通过props传入；在componentDidMount()中加载数据；加载成功，将数据存储在state中，通过调用setState来触发渲染更新界面；⚠️AJAX是一个异步请求，即使componentDidMount()调用完毕，数据也不会马上就获得，浏览器会在数据完全到达后才调用Ajax中所设定的回调函数，有时间差。因此当响应数据、更新state前，先通过this.isMounted()来检测组件的状态是否已经mounted。
+* ref回调函数属性：一旦引用的组件被卸载，或者ref属性本身发生了变化，原有的ref会再次被调用，此时参数为null，这样可以防止内存泄露。内联函数表达式，会使得React每次更新(即调用渲染函数)时，都会得到不同的函数对象，之后每次更新时ref回调函数都会被调用两次：前一次参数是null，后一次是具体的组件实例。
+    * 不要在任何组件的渲染函数或者被渲染函数调用的过程中访问refs
+    * 在Google Closure Compiler的高级模式下，不能访问用字符串形式声明的动态属性，即如果定义ref='myRefString',则必须以this.refs['myRefString']的形式来访问引用。
+    * 对于stateless function来说，引用不会被加载，因为无状态组件并没有对应实例。可以使用标准的复合组件来包装一个无状态组件，以在其上附加引用。
+* classNames.js: class动态切换
+    * 可以接受任意数量的参数，并将参数连接成一个class字符串，参数可以是一个字符串或者一个对象
+    * 对象：对象的属性名(属性值为false | 0 | null | undefine 的除外)也会加入到结果class字符串中
+    * 数组：数组中的元素也被当作参数进行处理
+    * ES6动态属性特性：classNames({[`btn-${buttonType}`]: true});
+    * 多类名去重：depupe模块包含去重的功能，但是性能要差些，如非确实有去重需求，没必要使用它
+* Immutable.js:
+    * JS中的对象具有共享变量机制，一般使用对象复制来避免这个问题，但马上会遇到是浅复制还是深复制的选择，把问题复杂化。
+    * 持久化数据结构：对Immutable数据对象的任何修改|添加|删除操作都会返回一个新的Immutable对象，同时原对象依然可用且不可变
+    * 结构共享：避免深度复制，如果对象树中只有一个节点发生了变化，则只修改受到影响的父节点对它的引用，其他节点则与原对象共享，从而避免了深度复制带来的内存开销
+    * 支持回撤、并发安全、与函数式编程天然一致
+    * React提倡把this.state当作只可创建不能更改的Immutable，Redux推荐搭配使用Immutable来管理state数据
+* React与jQuery的区别
+    * DOM操作方式不同：jQuery主要操作的是实际DOM元素，React操作的是虚拟DOM，React是数据驱动的，很少需要操作DOM，只需要关注数据的变化即可。另外jQuery中有专门针对不同浏览器的处理方案，由于React包含了由虚拟DOM到真实DOM的转换模块则不再需要。
+    * 元素选取方式不同：jQuery通过选择器选择元素，React由于是虚拟DOM，通过ref
+    * 渲染方式不同：jQuery根据具体的实现决定整体还是部分更新；React考虑的是整体更新机制，在实际更新的时候更新的是局部
+    * 事件处理方式不同：两者都在原生JS的基础上封装了一套自己的事件处理逻辑
+* 在React中使用jQuery：
+    * 重点关注componentDidMount | componentWillUnmount,在这两个函数内适配jQuery的生命周期
+    * 通过ref获取真实浏览器DOM元素
+    * 注意jQuery事件系统与React不同
+* 路由：在浏览器当前的URL发生变化时做出对应的响应，用来保证视图与URL的同步
+* 后端路由：每次访问一个新页面的时候都要向服务器发送请求，然后服务器响应请求
+* 前端路由：访问一个新页面的时候仅仅变换了一下路径，没有网络延迟。因此前端路由相较于后端路由，在性能和用户体验上会有相当大的提升。
+* 路由职责：记录一些重要的状态，比如用户的登陆状态、当前访问资源、用户的上一访问资源等，并根据需要重新以同步或异步的方式向服务端请求获取资源，然后重新渲染视图。
+* path属性：指定路由的匹配规则。
+    * 绝对路由：以“/”开头
+    * 相对路由：不以“/”开头
+    * 通配符执行规则：自上而下，一旦发现匹配，则不再考虑其他规则了
+    * ![通配符](../assets/wildcards.png)
+    * Route会将参数通过this.props.location.query传入组件
+* NotFoundRoute: 用于声明父组件匹配成功但没有找到匹配的子组件时所激活的子组件
+    * handler：用来声明处理路由不匹配的子组件
+    * 并不是针对资源没有被找到而设计的。路由没有匹配到特定的URL与通过一个合法的URL没有查找到资源是有区别的。如course/123是一个合法的URL并能够匹配到对应的路由，但是却没有匹配的组件
+* history属性：
+    * 监听浏览器地址栏的变化，并将URL解析成一个地址对象，供React Router匹配
+    * browserHistory：显示正常路径，底层是依托于浏览器本身的History API 实现的。由于地址是在本地切换完成的，而不是由服务器响应的，如果向服务器请求子路由则会显示网页找不到。如果使用webpack-dev-server作为开发服务器，在命令行加上--history-api-fallback可以避免这个问题。
+    * hashHistory：根据hash值进行切换
+    * createMemoryHistory：用于服务器端渲染，只是创建一个内存中的history对象，并不与浏览器URL互动。
+* 路由回调：
+    * onLeave():在用户进入该路由时被触发，实现认证功能
+    * onEnter():在用户离开该路由时被触发
+* Link组件
+    * 取代`<a>`元素的React版本，生成一个链接，允许用户单击后跳转可以接收Router的状态
+    * activeStyle属性：配置路由样式
+    * activeClassName属性：指定当前路由的Class
+    * onlyActiveOnIndex属性：设置为true，链接到根路由
+* 动态路由切换：
+    * 1、browserHistory.push():需要预先将Router的history属性声明为browserHistory
+    * 2、利用context机制提取router对象，从而调用router.push(path)完成路由切换
+* Redux:
+    * Action：表达操作
+    * Reducer：根据Action更新State，复制Redux的更新逻辑
+    * Store：存储数据
+
 * 脚手架
     * [React Starter Kit — (Node.js, Express, GraphQL, React.js, Babel, PostCSS, Webpack, Browsersync)](https://github.com/kriasoft/react-starter-kit)
     * [React-Boilerplate](https://www.reactboilerplate.com/)
