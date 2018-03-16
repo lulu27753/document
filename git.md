@@ -52,6 +52,11 @@ git remote rm [remote-name] # 移除一个远程仓库
 ```
 > git clone会自动将其添加为远程仓库并默认以 “origin” 为简写
 
+```bash
+# 将本地已有的仓库推送到远程
+git remote add origin https://github.com/lulu27753/music_app.git
+git push -u origin master
+```
 ## 1.2. gitignore 的格式规范
 
 + 所有空行或以#开头的行都会被Git忽略

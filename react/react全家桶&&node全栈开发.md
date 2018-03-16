@@ -149,6 +149,7 @@ express使用body-parse支持post参数
 * 首先通过reducer新建store，随时可以通过store.getState获取状态
 * 需要状态变更时，store.dispatch(action)来修改状态
 * Reducer()接受state和action，返回新的state，可以用store.subscribe监听每次修改
+* 当有多个reducer时，需要通过redux提供的combineReducers()合并成单个reducer
 
 ## Redux如何和React一起用（手动链接）
 
@@ -206,5 +207,8 @@ express使用body-parse支持post参数
 
 * `npm i react-router-dom --save`
 * BrowserRouter包裹整个应用,只使用一次
-* Router路由对应渲染的组件，可嵌套
+* Route路由对应渲染的组件，可嵌套.精确匹配添加参数exact
 * Link跳转专用
+* url参数，Route组件参数可用冒号标识参数
+* Redirect组件跳转
+* Switch只渲染命中的第一个子Route组件
