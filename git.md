@@ -98,6 +98,11 @@ git reset HEAD <file> # 取消文件暂存
 git checkout -- <file> # 撤销文件修改
 ```
 
+```bash
+git reset HEAD^ --hard
+git push -f [remote] [branch]
+```
+
 ## 1.6. 打标签
 
 ```bash
@@ -158,6 +163,7 @@ git branch -u origin/serverfix # 修改正在跟踪的上游分支 -u即--set-u
 git branch -vv # 查看设置的所有跟踪分支
 git fetch --all # 抓取所有的远程仓库
 git push origin --delete serverfix # 删除远程分支serverfix
+git push -f origin lbranch-3:refs/rbranch-1 # 用本地分支lbranch-3覆盖远程分支rbranch-1
 ```
 
 ## 2.4. 变基
@@ -177,3 +183,5 @@ git rebase --onto master server client // 取出 client 分支，找出处于 cl
 
 [Git Book](https://git-scm.com/book/zh/v2)<br />
 [Git Flight Rule](https://github.com/k88hudson/git-flight-rules)
+<br />
+[Git教程™](https://www.yiibai.com/git/)

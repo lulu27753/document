@@ -1,4 +1,11 @@
-# 
+# Vue
+
+* 双向数据绑定
+* 路由
+* 状态管理
+* 动画
+* 组件化
+* SSR
 
 ## vue 组件资源
 
@@ -14,7 +21,7 @@
 
 [Antue](https://zzuu666.github.io/antue/#/components/switch/index/zh)
 
-
+[wxc-lottery-rain 红包雨 - Weex Ui](https://alibaba.github.io/weex-ui/#/cn/packages/wxc-lottery-rain/)
 
 ## vue-cli
 
@@ -34,15 +41,22 @@ npm run dev
 * 文本：{{}}
   * 只支持单个表达式，不支持语句和流控制
   * 不能使用用户自定义的全局变量，只能使用Vue白名单内的全局变量
-  * 管道符(|)对数据进行过滤，用于格式化文本
+  * 格式化文本
+    * 管道符(|)对数据进行过滤
+    * 过滤规则：通过给Vue实例添加选项filters来设置
+    * 过滤器可以串联也可以接收参数
 * 原始HTML：v-html
 
 ### 指令
 
+* 当表达式的值改变时，相应地将某些行为应用到DOM上，所以不到万不得已不要主动操作DOM
 * 带有v-前缀的特殊属性
 * 值是单个JS表达式(v-for是例外)
 * 当值改变时，将其产生的连带影响，响应式地作用于DOM
 * v-pre：跳过这个元素和它的子元素的编译过程
+* v-bind: 动态更新HTML元素上的属性
+* v-on：绑定事件监听器
+* v-cloak: 在Vue实例结束编译时从绑定的HTML元素上移除，经常和display:none配合使用，防止插值表达式出现的屏幕闪动问题
 
 ### 参数
 
@@ -62,13 +76,17 @@ v-on: `@`
 应该将复杂和多复用逻辑放入到计算属性中
 
 computed：
+
 * 计算属性的getter()是没有副作用的
-* this指向实例
+* this指向Vue实例
 * 计算属性是基于它们的依赖进行缓存的，对于依赖没有发生改变的情况，会立即返回之前的计算结果，而不必再次执行函数
 * 可以将同一函数定义为一个方法（method）而不是一个计算属性，但是调用方法总会再次执行函数
 * 大多数情况下更适合使用计算属性而不是侦听属性(watch)
 * 然而在数据变化时或开销较大的操作时，应该使用watch，其允许我们执行异步操作(访问一个API)，限制我们执行该操作的频率，并在得到最终结果前，设置中间状态，这些computed无法做到
 * 计算属性默认只有getter，在需要的时候也可以提供一个setter
+* 计算属性可以依赖多个Vue实例的数据，只要其中任一数据变化，计算属性就会重新执行，视图也会更新。
+* 计算属性可以依赖其他计算属性
+* 计算属性不仅可以依赖当前Vue实例的数据，还可以依赖其他实例的数据。你写的一个组件所用得到的数据需要依赖他人的组件提供。
 
 ## class 与 style
 
@@ -79,6 +97,7 @@ computed：
 * 数组语法：`v-bind:class=[]`
 * 数组对象语法：`v-bind:class=[{}, {}]`
 * 当在一个自定义组件上使用`class`时，这些类将被添加到该组件的根元素上面，这个元素上已经存在的类不会被覆盖。
+* 当class的表达式过长或逻辑复杂时，可以使用data或computed
 
 ### style
 
@@ -108,18 +127,20 @@ computed：
 ### 数组
 
 变异方法:会改变被方法调用的原始数组
-push()
-pop()
-shift()
-unshift()
-splice()
-sort()
-reverse()
+
+* push()
+* pop()
+* shift()
+* unshift()
+* splice()
+* sort()
+* reverse()
 
 非变异数组：总是返回一个新数组
-filter()
-concat()
-slice()
+
+* filter()
+* concat()
+* slice()
 
 ### 对象
 
@@ -129,7 +150,10 @@ vue不能检测对象属性的添加或删除
 
 * `v-on：<event>`
 * 在 `methods` 对象中定义事件处理方法,用 JavaScript 直接调用方法,也可以在内联 JavaScript 语句中调用方法
+  * methods 中定义的方法可以接受参数
 * `$event`传入事件处理方法以访问原始的DOM事件
+* 调用的方法名后可以不跟括号"()",如果该方法有参数，默认会将原生事件对象event传入
+* 当ViewModel销毁时，所有的事件处理器都会自动删除，无须自己清理。
 
 ### 事件修饰符：
 
@@ -159,7 +183,7 @@ vue不能检测对象属性的添加或删除
 * .ctrl
 * .alt
 * .shift
-* .meta
+* .meta(Mac下是Command,Windows下是窗口键)
 
 ### 鼠标按钮修饰符
 
@@ -222,6 +246,7 @@ new Vue({
 ### prop验证
 
 type：
+
 * String
 * Number
 * Boolean
