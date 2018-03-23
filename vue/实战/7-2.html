@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第七章 组件_使用props传递数据</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="parentMessage">
+        <my-component warning="来自父组件的数据" :parent-message="parentMessage"></my-component>
+        <my-component warning="来自父组件的数据" number=[1,2,3]></my-component>
+        <my-component warning="来自父组件的数据" :number=[1,2,3]></my-component>
+        
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // 全局注册组件
+        Vue.component('my-component', {
+            template: '<div><div>{{warning}} {{message}}</div><div>动态传递数据：{{parentMessage}}</div><div>{{number.length}}</div></div>',
+            props: ['warning','parentMessage','number'],// props声明的数据来自父级
+            // data中的是组件自己的数据，作用域就是组件本身
+            // 这两种数据都可以在模版template及计算属性computed和方法methods中使用
+            // 当props和data同时声明了message时，props会覆盖掉data
+            // JS中用驼峰命名，HTML中用短横分割命名
+            data: function () {
+                return {
+                    message:'这里是组件的内容',
+                    // 在组件初始化时获取来自父组件的数据，之后就与之无关了
+                    // warning: warning,
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                parentMessage: '',
+            }
+        })
+    </script>
+</body>
+</html>

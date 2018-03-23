@@ -212,3 +212,27 @@ express使用body-parse支持post参数
 * url参数，Route组件参数可用冒号标识参数
 * Redirect组件跳转
 * Switch只渲染命中的第一个子Route组件
+
+## 文件架构和规范
+
+* src前端源码目录
+* server后端express目录
+* 功能文件夹：component | container | reducers等
+
+### router页面怎么划分
+
+* 进入应用时获取用户信息，用户未登录跳转login页面
+* login和register页面不需要权限认证
+* 用户信息 | 聊天列表 | 职位列表 页面共享底部的tabbar
+
+### 其他注意事项
+
+* mongodb字段的设计
+* axios发送异步请求
+* redux管理所有数据，组件尽量用antd-mobile，弱化css
+
+## 前后端数据联调
+
+* 使用axios发送异步请求
+  * 如何发送，react应用和server应用端口不一致，使用proxy配置转发，解决跨域的问题
+  * axios拦截器，统一loading处理

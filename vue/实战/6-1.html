@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第六章 表单与v-model</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message" placeholder="输入...">
+        <p>输入的内容是：{{message}}</p>
+        <input type="radio" :checked="picked">
+        <label for="">单选按钮</label>
+        <input type="radio" v-model="picked" value="html" id="html">
+        <label for="">单选按钮1</label>
+        <input type="radio" v-model="picked" value="css" id="css">
+        <label for="">单选按钮2</label>
+        <input type="radio" v-model="picked" value="js" id="js">
+        <label for="">单选按钮3</label>
+        <p>选择的项是：{{ picked }}</p>
+        <input type="checkbox" v-model="checked" id="checked">
+        <label for="checked">选择状态: {{checked}}</label>
+        <input type="checkbox" v-model="checked" value="html" id="html">
+        <label for="checked">html</label>
+        <input type="checkbox" v-model="checked" value="css" id="css">
+        <label for="checked">css</label>
+        <input type="checkbox" v-model="checked" value="js" id="js">
+        <label for="checked">js</label>
+        <div>
+             <!-- option如果含有value属性，v-model就会优先匹配value的值，如果没有就直接匹配option的text -->
+            <select v-model="selected">
+                <option>html</option>
+                <option>css</option>
+                <option value="js">javascript</option>
+            </select>
+            <span>选择的项是：{{selected}}</span>
+        </div>
+        <!-- 实际业务场景的动态生成 -->
+        <div>
+            <select v-model="selected2">
+                <option v-for="option in options" :value="option.value">{{option.text}} </option>
+            </select>
+            <span>选择的项是：{{selected2}}</span>
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                message: '',
+                picked: 'js',
+                checked: ['html'],
+                selected: 'html',
+                selected2: 'html',
+                options:[
+                    {
+                    value: 'js',
+                    text: 'javascript',
+                    },
+                    {
+                    value: 'html',
+                    text: 'html',
+                    },
+                    {
+                    value: 'css',
+                    text: 'css',
+                    },
+                ]
+            },
+            methods: {
+                
+            }
+        });
+    </script>
+</body>
+</html>
