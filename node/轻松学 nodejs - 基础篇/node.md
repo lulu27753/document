@@ -15,6 +15,7 @@
   - [理解Event Loop](#%E7%90%86%E8%A7%A3event-loop)
   - [事件循环的六个阶段](#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%85%AD%E4%B8%AA%E9%98%B6%E6%AE%B5)
   - [setTimeout 和 setImmediate](#settimeout-%E5%92%8C-setimmediate)
+- [](#)
 
 <!-- /TOC -->
 
@@ -430,3 +431,5 @@ fs.readFile('test.js', () => {
 ```
 
 上面代码会先进入 I/O callbacks 阶段，然后是 check 阶段，最后才是 timers 阶段。因此，setImmediate才会早于setTimeout执行。
+
+# 
