@@ -125,3 +125,7 @@ onShareAppMessage | Function | 用户点击右上角转发
 onPageScroll | Function | 页面滚动触发事件的处理函数
 onTabItemTap | Function | 当前是 tab 页时，点击 tab 时触发
 其他 | Any | 开发者可以添加任意的函数或数据到 object 参数中，在页面的函数中用 this 可以访问
+
+## 资源
+
+微信小程序图表插件（wx-charts）

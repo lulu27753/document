@@ -103,6 +103,22 @@ git reset HEAD^ --hard
 git push -f [remote] [branch]
 ```
 
+```bash
+# Delete the most recent commit, keeping the work you've done:
+git reset --soft HEAD~1
+
+# Delete the most recent commit, destroying the work you've done:
+git reset --hard HEAD~1
+
+# 撤销(回退)某次commit
+git revert commit_hash_id # (revert会产生一个新的commit,回退代码)
+
+# 撤销git add操作
+git rm --cache xxxx # 从暂存区删除,这个不会删除物理文件
+
+```
+
+
 ## 1.6. 打标签
 
 ```bash

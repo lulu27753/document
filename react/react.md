@@ -17,3 +17,4 @@
 [Spectacle | 幻灯片](http://stack.formidable.com/spectacle/#/7?_k=vy3i7n)
 [spectacle | GitHub](https://github.com/FormidableLabs/spectacle)
 [NervJS | 京东类React框架](https://github.com/NervJS/nerv)
+[oreillymedia | 官网](http://oreillymedia.github.io/)

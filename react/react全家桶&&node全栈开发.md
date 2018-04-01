@@ -133,7 +133,22 @@ express使用body-parse支持post参数
 
 ## antd-mobile
 
-安装：`npm i antd-mobile --save`
+* 安装：`npm i antd-mobile --save`
+* css配置
+  * 安装`npm i babel-plugin-import --save`
+  * 在package.json中的babel中的plugins字段中添加配置：
+
+  ```json
+      "plugins": [
+        [
+          "import",
+          {
+            "libraryName": "antd-mobile",
+            "style": "css"
+          }
+        ]
+      ]
+  ```
 
 ## redux
 
@@ -149,7 +164,7 @@ express使用body-parse支持post参数
 * 首先通过reducer新建store，随时可以通过store.getState获取状态
 * 需要状态变更时，store.dispatch(action)来修改状态
 * Reducer()接受state和action，返回新的state，可以用store.subscribe监听每次修改
-* 当有多个reducer时，需要通过redux提供的combineReducers()合并成单个reducer
+* 复杂redux应用，当有多个reducer时，需要通过redux提供的combineReducers()合并成单个reducer
 
 ## Redux如何和React一起用（手动链接）
 
@@ -163,7 +178,7 @@ express使用body-parse支持post参数
 
 ## 处理异步
 
-* Redux默认至处理同步，异步任务需要`redux-thunk`插件
+* Redux默认处理同步，异步任务需要`redux-thunk`插件
   * `npm i redux-thunk --save`
   * 使用`applyMiddleware`开启`thunk`中间件(redux的中间件机制)
   * `action`可以返回函数，使用`dispatch`提交`action`
@@ -188,10 +203,16 @@ express使用body-parse支持post参数
 
 所有的数据都是外部给进来的，通过props传输的组件就叫做木偶组件
 
-## 使用装饰器优化connect代码
+## 使用装饰器@优化connect代码
 
 * 安装支持装饰器的插件：`npm i babel-plugin-transform-decorators-legacy --save-dev`
 * 在package.json中添加babel的plugin配置
+
+    ```bash
+        "plugins": [
+          "transform-decorators-legacy"
+        ]
+    ```
 
 ## redux后续进阶
 
@@ -212,12 +233,16 @@ express使用body-parse支持post参数
 * url参数，Route组件参数可用冒号标识参数
 * Redirect组件跳转
 * Switch只渲染命中的第一个子Route组件
+* 父级路由有添加exact属性，则不会出现子路由
 
 ## 文件架构和规范
 
 * src前端源码目录
 * server后端express目录
 * 功能文件夹：component | container | reducers等
+  * component: 组件
+  * container: 页面（业务组件）
+  * 页面入口处获取用户信息，决定跳转到哪个页面
 
 ### router页面怎么划分
 
@@ -231,8 +256,21 @@ express使用body-parse支持post参数
 * axios发送异步请求
 * redux管理所有数据，组件尽量用antd-mobile，弱化css
 
+## 开发模式
+
+* 基于cookie用户验证
+  * cookie类似于一张身份卡，登陆后服务器端返回，你带着cookie就可以访问受限资源
+  * cookie的管理浏览器会自动处理
+  * express依赖cookie-parser: `npm i cookie-parser --save`
+
 ## 前后端数据联调
 
-* 使用axios发送异步请求
+* 使用axios发送异步请求:`npm i axios --save`
   * 如何发送，react应用和server应用端口不一致，使用proxy配置转发，解决跨域的问题
-  * axios拦截器，统一loading处理
+    * 代理配置:在package.json中添加字段proxy
+      `"proxy": "http://localhost:9093"` // 将所有的react应用端口转发到server的同一个端口
+  * axios拦截器，Axios.interceptors设置拦截器，统一loading处理
+  * axios.get | axios.post 发送请求，返回promise对象
+  * redux里使用异步数据，渲染页面
+
+

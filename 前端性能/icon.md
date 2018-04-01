@@ -21,7 +21,7 @@
 
 # 2. img标签
 
-可直接引用.jpg(或.jpeg) |.png | .gif | .webp | .svg
+可直接引用.jpg(或.jpeg) |.png | .gif | .webp | .svg | .dpg
 
 **劣势：**
 
