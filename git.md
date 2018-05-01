@@ -3,23 +3,24 @@
 >建议学习时间：1天
 <!-- TOC -->
 
-- [1. Git 基础](#1-git-%E5%9F%BA%E7%A1%80)
-    - [1.1. 仓库](#11-%E4%BB%93%E5%BA%93)
-        - [1.1.1. 在现有项目中初始化仓库](#111-%E5%9C%A8%E7%8E%B0%E6%9C%89%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93)
-        - [1.1.2. 克隆现有仓库](#112-%E5%85%8B%E9%9A%86%E7%8E%B0%E6%9C%89%E4%BB%93%E5%BA%93)
-        - [1.1.3. 远程仓库](#113-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93)
-    - [1.2. gitignore 的格式规范](#12-gitignore-%E7%9A%84%E6%A0%BC%E5%BC%8F%E8%A7%84%E8%8C%83)
-    - [1.3. 记录更新](#13-%E8%AE%B0%E5%BD%95%E6%9B%B4%E6%96%B0)
-    - [1.4. 历史记录](#14-%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95)
-    - [1.5. 撤销](#15-%E6%92%A4%E9%94%80)
-    - [1.6. 打标签](#16-%08%E6%89%93%E6%A0%87%E7%AD%BE)
-    - [1.7. 别名](#17-%E5%88%AB%E5%90%8D)
-- [2. Git 分支](#2-git-%E5%88%86%E6%94%AF)
-    - [2.1. 本地分支管理](#21-%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86)
-    - [2.2. 分支工作流（work silos）](#22-%E5%88%86%E6%94%AF%E5%B7%A5%E4%BD%9C%E6%B5%81%EF%BC%88work-silos%EF%BC%89)
-    - [2.3. 远程分支管理](#23-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86)
-    - [2.4. 变基](#24-%E5%8F%98%E5%9F%BA)
-    - [参考资料](#%08%E5%8F%82%E8%80%83%08%E8%B5%84%E6%96%99)
+- [1. Git 基础](#1-git)
+    - [1.1. 仓库](#11)
+        - [1.1.1. 在现有项目中初始化仓库](#111)
+        - [1.1.2. 克隆现有仓库](#112)
+        - [1.1.3. 远程仓库](#113)
+    - [1.2. gitignore 的格式规范](#12-gitignore)
+    - [1.3. 记录更新](#13)
+    - [1.4. 历史记录](#14)
+    - [1.5. 撤销](#15)
+    - [临时仓库（stash)](#stash)
+    - [1.6. 打标签](#16)
+    - [1.7. 别名](#17)
+- [2. Git 分支](#2-git)
+    - [2.1. 本地分支管理](#21)
+    - [2.2. 分支工作流（work silos）](#22-work-silos)
+    - [2.3. 远程分支管理](#23)
+    - [2.4. 变基](#24)
+    - [参考资料](#)
 
 <!-- /TOC -->
 ## 1.1. 仓库
@@ -50,6 +51,7 @@ git push [remote-name] [branch-name] # 推送数据
 git remote show [remote-name] # 命令列出了当你在特定的分支上执行 git push 会自动地推送到哪一个远程分支。 它也同样地列出了哪些远程分支不在你的本地，哪些远程分支已经从服务器上移除了，还有当你执行 git pull 时哪些分支会自动合并。
 git remote rm [remote-name] # 移除一个远程仓库
 ```
+
 > git clone会自动将其添加为远程仓库并默认以 “origin” 为简写
 
 ```bash
@@ -118,6 +120,22 @@ git rm --cache xxxx # 从暂存区删除,这个不会删除物理文件
 
 ```
 
+## 临时仓库（stash)
+
+```bash
+git stash
+git stash list
+git stash apply
+git stash pop
+git stash drop
+```
+
+* stash 不小心被clear或者drop
+    * git fsck --lost-found
+    * 复制dangling commit 的id（其他的dangling blob不用理会）
+    * git show [id]
+    *  查看具体内容， 找到你想要的记录，记录中会描述日期和摘要，日期是你git stash 的日期， 摘要会记录你是在哪一条commit 上进行git stash操作的，
+    * git merge [id]
 
 ## 1.6. 打标签
 
@@ -182,6 +200,17 @@ git push origin --delete serverfix # 删除远程分支serverfix
 git push -f origin lbranch-3:refs/rbranch-1 # 用本地分支lbranch-3覆盖远程分支rbranch-1
 ```
 
+设置远程地址的文件在.git目录下的config文件中
+
+```bash
+git remote rm origin # 删除远程地址
+git remote add origin [url] # 添加远程地址
+```
+
+```bash
+git remote origin set-url [url] # 修改远程地址
+```
+
 ## 2.4. 变基
 
 > rebase将提交到某一分支上的所有修改都移至到另一分支上，就像“重新播放”.和merge的整合方法的最终结果没有任何区别，但是变基使得提交历史更加整洁。
@@ -201,3 +230,4 @@ git rebase --onto master server client // 取出 client 分支，找出处于 cl
 [Git Flight Rule](https://github.com/k88hudson/git-flight-rules)
 <br />
 [Git教程™](https://www.yiibai.com/git/)
+[Code-Guide](https://github.com/loan-front-team/Code-Guide/blob/master/git-guide.md)

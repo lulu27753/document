@@ -1,7 +1,7 @@
 ## 技术栈
 
 前端页面：登录 | 完善信息 | 牛人列表 | BOSS列表 | 消息列表 | 聊天详情
-前端支撑：antd-mobile | redux | react-router4 | axios | create-react=app | 第三方组件
+前端支撑：components-mobile | redux | react-router4 | axios | create-react=app | 第三方组件
 后端支撑： Express | Socket.io | mangodb
 
 ## express
@@ -9,6 +9,31 @@
 * app.get | app.post 分别开发get和post接口
 * app.use使用模块
 * res.send | res.json | res.sendfile 响应文本 | json | 文件
+* 参数获取
+  * get
+    * req.query.[name]
+    * JSON.stringify(req.query)
+  * post
+    * req.body.[pName]
+  * 其他信息
+    * req.header(field)：获取请求的头信息
+  * route
+    * req.route
+  * cookies
+    * req.cookies
+  * hostname
+    * req.hostname
+  * ip
+    * req.ip
+  * originalUrl
+    * req.originalUrl
+  * protocol
+    * req.protocol
+  * secure
+    * req.secure：用来判断协议是否安全,如果是https，返回的就是true
+  * xhr
+    * req.xhr：判断是否是异步请求
+
 
 新建配置文件server.js
 
@@ -77,6 +102,7 @@ String,Number等数据结构
 6、增删改查
 create | remove | update 分别用来增 | 删 | 改 的操作
 find | findOne（找到一条立即返回，剩下的不管） 用来查询数据
+findByIdAndUpdate 查找并且更新
 
 ```javascript
 // 新增数据
@@ -163,6 +189,7 @@ express使用body-parse支持post参数
 步骤：
 * 首先通过reducer新建store，随时可以通过store.getState获取状态
 * 需要状态变更时，store.dispatch(action)来修改状态
+* action creator 在return时 的第一个参数dispatch，第二个参数是getState,即store.getState，可以获取应用里所有的状态
 * Reducer()接受state和action，返回新的state，可以用store.subscribe监听每次修改
 * 复杂redux应用，当有多个reducer时，需要通过redux提供的combineReducers()合并成单个reducer
 
@@ -234,6 +261,7 @@ express使用body-parse支持post参数
 * Redirect组件跳转
 * Switch只渲染命中的第一个子Route组件
 * 父级路由有添加exact属性，则不会出现子路由
+* 如果Route没有path属性，则当前面所有的路径都没有命中时，就会走该Route
 
 ## 文件架构和规范
 
@@ -262,6 +290,26 @@ express使用body-parse支持post参数
   * cookie类似于一张身份卡，登陆后服务器端返回，你带着cookie就可以访问受限资源
   * cookie的管理浏览器会自动处理
   * express依赖cookie-parser: `npm i cookie-parser --save`
+  * chrome的Application面板
+    * Value:
+    * Domain：当前的cookie只在localhost这个域名下有用，访问其他的域名是没有这个cookie的
+    * Path：设置我们可以在哪个路径下使用该cookie
+    * Expires/Max-Age:过期时间，当值为“Session“时其值由后端来定
+    * Size:cookie的大小
+    * HTTP：对勾表示HTTP only,即JS无法修改该cookie的值，只在发送请求的时候带上该cookie,所有的cookie信息只能在后端修改，会更加安全
+    * Secure:安全
+    * SameSite:只有在当前域名下才发出当前cookie
+  * document.cookie: 获取当前域名下的cookie
+  * 清除cookie：`npm i browser-cookies --save`
+
+## cookie保存登录状态
+
+  * 安装解析cookie的插件：npm i cookie-parser --save
+  * res.cookie('userid', doc._id); // 设置cookie
+      * 第一个参数是key
+      * 第二个参数是value
+  * req.cookies // 获取前端cookie
+
 
 ## 前后端数据联调
 
@@ -273,4 +321,68 @@ express使用body-parse支持post参数
   * axios.get | axios.post 发送请求，返回promise对象
   * redux里使用异步数据，渲染页面
 
+  ## 往后端发送数据
+
+  * redux
+  * express
+  * mangodb
+
+  ## 发送post请求
+
+  * 安装body-parser插件：npm i body-parser --save
+  
+
+  ## MD5加密
+
+  * 安装第三方库：npm i utility --save
+  * 引用：require('utility').md5('string')
+
+## 高阶组件
+
+代码的复用，逻辑的抽象
+* 属性代理
+* 反向继承：可以修改生命周期，整个渲染的流程
+
+## Socket.io
+
+* 基于事件的实时双向通信库
+  * 基于websocket双向通信协议，不同于普通的基于http协议
+  * 前后端通过事件进行双向通信
+* 基于http协议
+  * 单向，实时获取数据只能轮询，每隔一个时间间隔向后端发送查询请求
+  * 长连接是不停的向后端发送请求，但是后端不返回
+* 基于websocket协议
+  * 后端可以主动推送数据
+  * 现代浏览器均支持websocket协议
+* ![socket通信模型](../assets/socket.png)
+* 配合express
+  * 后端:`npm i socket.io --save`
+    * Io = require('socket.io')(http)
+    * io.on 监听事件
+    * io.emit 触发事件
+  * 前端:`npm i socket.io-client --save`
+    * import io from 'socket.io-client'
+    * io.on 监听事件
+    * io.emit 触发事件
+
+## 代码规范
+
+[ESLint中文](http://eslint.cn/)
+
+## 动画解决方案
+
+* CSS动画：实现的功能简单，但是性能会好一些
+* JS动画：定制类型动画形式会更多，但是是通过操作DOM来实现，所以性能差一些
+* 不需要直接去操作DOM的解决方案
+  * ReactCSSTransitonGroup
+  * [Ant Motion](https://motion.ant.design/)
+    * 让动画生效，只能渲染一个Route
+
+## 项目打包编译
+
+* npm run build
+  * 编译打包后，生成build目录
+  * express中间件，拦截路由，手动渲染index.html
+  * build设置为静态资源地址
+  *  
 
