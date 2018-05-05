@@ -4,6 +4,16 @@
 前端支撑：components-mobile | redux | react-router4 | axios | create-react=app | 第三方组件
 后端支撑： Express | Socket.io | mangodb
 
+## create-react-app 
+
+```bash
+sudo npm install -g create-react-app yarn
+create-react-app performance-demo
+cd performance-demo
+yarn start
+yarn run eject  # 将所有内建的配置暴露出来
+```
+
 ## express
 
 * app.get | app.post 分别开发get和post接口
@@ -86,6 +96,7 @@ mongoose.connection.on('connected', function () {
   console.log(`mongo connect success`);
 })
 ```
+
 5、封装mongoose
 Connect链接数据库
 定义文档模型，Schema 和 model 新建模型
@@ -99,6 +110,7 @@ const User = mongoose.model('user', new mongoose.Schema({
 }))
 ```
 String,Number等数据结构
+
 6、增删改查
 create | remove | update 分别用来增 | 删 | 改 的操作
 find | findOne（找到一条立即返回，剩下的不管） 用来查询数据
@@ -378,11 +390,58 @@ express使用body-parse支持post参数
   * [Ant Motion](https://motion.ant.design/)
     * 让动画生效，只能渲染一个Route
 
+## React性能优化
+
+* 组件性能优化
+  * 属性传递优化：
+    * 尽可能只使用一份数据，而不是每次需要都重新定义一份
+    * 少传递参数，尽可能减少React传递参数的负担
+  * 减少React的组件渲染次数（多组件优化）：shouldComponentUpdate | PureComponent | immutable.js
+    * 查看react性能：在url中加上?react_perf后，打开Chrome的Performance，看User Timing字段
+      * React Tree Reconcillation: React虚拟DOM
+      * shouldComponentUpdate：父组件render和this.setState()都会经过的生命周期函数，决定组件是否渲染，返回true则渲染，返回false就不渲染
+        * nextProps: 父组件render时是否渲染
+        * nextState：调用this.setState()时是否渲染
+        ```js
+          shouldComponentUpdate(nextProps, nextState) {
+            return false;
+          }
+        ```
+
+* key
+* Redux性能优化
+  * reselect可以对数据进行缓存，由于纯函数的稳定输入稳定输出的特点，在下一次使用时，直接使用计算的缓存即可
+* React同构
+  * 首屏采用服务端渲染
+
 ## 项目打包编译
 
 * npm run build
   * 编译打包后，生成build目录
-  * express中间件，拦截路由，手动渲染index.html
-  * build设置为静态资源地址
-  *  
+    * manifest.json
+    * asset-manifest.json
+  * express中间件，拦截路由，手动渲染index.html；即区分后端路由和前端路由
+    * 开发环境下是webpack的代理服务器实现的路由转发功能
 
+    ```js
+          app.use(function(req, res, next){
+            if(req.url.startWith('/user/') || req.url.startWith('/static/')) {
+              return next();
+            }
+            return res.sendFile(path.resolve('build/index.html'))
+          })
+    ```
+
+  * build设置为静态资源地址
+
+  ```js
+  app.use('/', express.static(path.resolve('build'))) // 解决路径引入的问题
+  ```
+  
+  ## 上线
+
+  * 购买域名
+  * DNS解析到你的服务器的IP（涉及到域名备案）
+  * 安装ngnix
+  * 使用pm2管理node进程
+  * 使用ngnix配置反向代理
