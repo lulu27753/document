@@ -1,7 +1,7 @@
 ## 技术栈
 
 前端页面：登录 | 完善信息 | 牛人列表 | BOSS列表 | 消息列表 | 聊天详情
-前端支撑：components-mobile | redux | react-router4 | axios | create-react=app | 第三方组件
+前端支撑：components-mobile | redux | react-router4 | axios | create-react-app | 第三方组件
 后端支撑： Express | Socket.io | mangodb
 
 ## create-react-app 
@@ -396,7 +396,8 @@ express使用body-parse支持post参数
   * 属性传递优化：
     * 尽可能只使用一份数据，而不是每次需要都重新定义一份
     * 少传递参数，尽可能减少React传递参数的负担
-  * 减少React的组件渲染次数（多组件优化）：shouldComponentUpdate | PureComponent | immutable.js
+  * 减少React的组件渲染次数（多组件优化）：组件只是根据传进来的值（props）进行渲染,并没有内部的状态
+    * shouldComponentUpdate | PureComponent | immutable.js
     * 查看react性能：在url中加上?react_perf后，打开Chrome的Performance，看User Timing字段
       * React Tree Reconcillation: React虚拟DOM
       * shouldComponentUpdate：父组件render和this.setState()都会经过的生命周期函数，决定组件是否渲染，返回true则渲染，返回false就不渲染
@@ -407,6 +408,23 @@ express使用body-parse支持post参数
             return false;
           }
         ```
+    * React@15以后不需要手动实现shouldComponentUpdate，只需要将React.Component改为React.PureComponent
+    * immutable：
+      * JS中，对象 | 数组 | 函数 存储的都是引用，因此要比较两个这样的对象是否相等，需要递归，比较复杂
+      * 共享可变的状态是万恶之源
+      * 生成不变的数据结构，一旦创建则不可修改，需要修改则只能重新创建一个对象
+      * 不可变的好处：
+        * 减少内存使用
+        * 可以做并发安全
+        * 降低项目复杂度
+        * 便于比较复杂数据，定制shouldComponentUpdate方便
+        * 时间旅行功能方便
+        * 函数式编程，可以写纯函数
+      * 缺点
+        * 学习成本
+        * 官方库比较大（有一个比较小的类似的解决方案：seamless-immutable）
+        * 对现有项目入侵太严重(所以老项目使用成本较高，可以评估再用，新项目可以直接使用)
+      * `npm install immutable --save`
 
 * key
 * Redux性能优化
@@ -445,3 +463,13 @@ express使用body-parse支持post参数
   * 安装ngnix
   * 使用pm2管理node进程
   * 使用ngnix配置反向代理
+
+## React16 新特性
+
+* 新的核心算法Fiber：使得渲染更加的友好，不会造成阻塞
+* Render可以返回数组及字符串了，而不需要一定要在外面包裹一个div
+* 错误处理机制
+  * 新增生命周期：componentDidCatch（err, info)
+* Portals组件：可以渲染dom节点之外的元素，比如tooltip的灰色背景层
+* 更好更快的服务端渲染
+* 打包的体积更小、MIT协议

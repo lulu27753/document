@@ -277,3 +277,10 @@ history 对象是可变的，因为建议从 <Route> 的 prop 里来获取 locat
 * 在 withRouter 中，以 this.props.match的方式获取
 * matchPath 的返回值
 
+## 坑
+
+* 通过router 的 history.push() 方法延迟跳转后还是会跳转
+* 在当前目录下的文件路径不再使用./, 而是直接用/
+* <Route component> 的优先级要比 <Route render> 高，所以不要在同一个 <Route> 中同时使用这两个属性。
+* 
+
