@@ -420,10 +420,31 @@ const RouteConfigExample = () => (
 export default RouteConfigExample
 ```
 
+## 资源
+
+[关于 React Router 4 的一切](https://blog.csdn.net/sinat_17775997/article/details/77411324)
+[React Router 中文文档](http://reacttraining.cn/)
+
 ## 坑
 
+
+* [react-router browserHistory刷新页面404问题解决](http://blog.codingplayboy.com/2017/12/26/react-router-browserhistory-404/)
 * 通过router 的 history.push() 方法延迟跳转后还是会跳转
 * 在当前目录下的文件路径不再使用./, 而是直接用/
 * <Route component> 的优先级要比 <Route render> 高，所以不要在同一个 <Route> 中同时使用这两个属性。
-* 
+* Link 和 BrowserRouter 是同一个history，然而createBrowserHistory 的 history只能改变url，并没有触发页面刷新
+* 错误的地方就在类似这样的代码
+写法1
+`export default connect(mapStateToProp, mapDispatchToProp)(withRouter(AppContainer));`
+应该写成
+
+写法2
+
+`export default withRouter(connect(mapStateToProp, mapDispatchToProp)(AppContainer));`
+原因
+connect内是进行shallow comparison浅比较的。它重写了组件的shouldComponentUpdate方法
+
+写法1中，connect重写了withRouter的shouldComponentUpdate方法，导致其不能够响应location的变化（仅仅响应mapStateToProps里面的变化）
+
+写法2中，将withRouter提到外层，withRouter的shouldComponentUpdate不会被重写，就会响应location的变化
 

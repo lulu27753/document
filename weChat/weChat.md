@@ -187,7 +187,7 @@ console.log(`Server listening at http://127.0.0.1:${port}`);
 
 ### 运行HTTP服务
 
-1、安装`PM2`及`Express`
+1. 安装`PM2`及`Express`
 
 ```bash
 npm install pm2 --global
@@ -195,7 +195,7 @@ cd /data/release/weapp # 进入工作目录
 npm install express --save
 ```
 
-2、启动服务
+2. 启动服务
 
 ```bash
 cd /data/release/weapp # 进入工作目录
@@ -207,6 +207,14 @@ pm2 restart app # 重启服务
 
 ```bash
 pm2 start app.js -i max # -i参数目的是指定运行多少个实例，在这个例子中 PM2 使用了一个常量max来扩展你的app运转到你最大的核数，不要忘记Node 平时只会运行在单核!
+```
+
+3. 关闭服务
+
+```bash
+pm2 status
+pm2 stop [id]
+pm2 delete [id]
 ```
 
 ## 搭建HTTPS服务

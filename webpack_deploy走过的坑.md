@@ -21,3 +21,6 @@ css引入的图片：
 
 webpack的bug导致如果本地开发目录路径不一致，编译出来的md5会不一致。所以推荐使用服务器构建。通过配置路径alias+path模块的绝对路径方法
 
+## 资源
+[webpack 热加载原理探索](http://shepherdwind.com/2017/02/07/webpack-hmr-principle/)
+

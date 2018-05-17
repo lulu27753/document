@@ -95,6 +95,16 @@ git log # 按提交时间列出提交历史 -p显示每次提交的差异 --stat
 ## 1.5. 撤销
 
 ```bash
+git clean -f # 删除 untracked files
+git clean -fd # 连 untracked 的目录也一起删掉
+git clean -xfd # 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）
+# 加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
+git clean -nxfd  
+git clean -nf  
+git clean -nfd  
+```
+
+```bash
 git commit --amend # 第二次提交将代替第一次提交
 git reset HEAD <file> # 取消文件暂存
 git checkout -- <file> # 撤销文件修改
@@ -223,6 +233,16 @@ git merge experiment // 将master指针快进合并
 git rebase --onto master server client // 取出 client 分支，找出处于 client 分支和 server 分支的共同祖先之后的修改，然后把它们在 master 分支上重放一遍
 ```
 > 只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作.
+
+## 项目管理
+
+```bash
+git diff --color [branchA] [branchB] > foo.diff
+git diff //对比workspace与index
+git diff HEAD //对于workspace与最后一次commit
+git diff <source_branch> <target_branch> //对比差异
+git add <filename> //修改完冲突，需要add以标记合并成功
+```
 
 ## 参考资料
 
