@@ -7,4 +7,14 @@
 * npm包全局安装，如果你的用户名中有空格，很多包都会有问题
 * 切换多个版本的Node：nvm
 * node只是提供了一个构建web服务端的框架，所以需要自己编写web服务器
-* 
+* process.memoryUsage()
+	* 堆外内存：buffer，不受GC控制，
+	* 打日志，log.js
+* 句柄
+* -smi
+* trace_gc
+虚拟机实现，内存分区，新生代minor，老生代major globalGC
+* max_executable_size
+* max_old_space_size
+* prof
+	

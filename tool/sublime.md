@@ -8,6 +8,12 @@ Command 按住Command键再点击想选中的行
 Command + Ctrl + G (选中部分文本时) 按此键选中所有相同文本
 Command + D (选中部分文本时) 直接选中下一次出现的该文本
 CSS按字母顺序排序：F5
+实现单词而不是字符间的跳转：按住Alt键的同时使用方向键
+跳转到这行的另一端：按住Cmd键的同时使用方向键
+跳转到指定行：Ctrl+G，然后输入行号
+Ctrl+T 左右字母互换
+Ctrl+K+U 转换大写
+Ctrl+K+L 转换小写
 
 
 ## 命令面板
@@ -19,7 +25,13 @@ CSS按字母顺序排序：F5
 
 ## 文件爬虫
 
+Command + R可以列出文档中所有的CSS选择器
 
+## 插件
+
+DocBlockr: 多行注释插件
+SideBarEnhancements：增强侧边栏
+PackageResourceViewer
 
 ## 其他
 

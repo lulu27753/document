@@ -425,6 +425,10 @@ export default RouteConfigExample
 [关于 React Router 4 的一切](https://blog.csdn.net/sinat_17775997/article/details/77411324)
 [React Router 中文文档](http://reacttraining.cn/)
 
+## hash VS browser
+
+* Warning: Hash history cannot PUSH the same path; a new entry will not be added to the history stack
+
 ## 坑
 
 
