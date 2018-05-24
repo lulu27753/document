@@ -9,7 +9,49 @@
 * 事情没有绝对性，任何前端路由的网站肯定能用后端路由实现，反之亦然
 * 可以把项目按不同的需求拆分开，有些部分后台路由，部分前端路由也可。
 
+## Router原理
+
+* 历史：入栈 | 出栈，记录跳转关系还能原路跳转回去的机制
+* 跳转：可以传递参数，负责不同页面的跳转动作
+* 事件：打开一个新页面或者退回到上一个页面时触发的逻辑
+
+## 原生路由方法
+
+window.location
+window.location.pathname
+window.location.search
+
+### 页面路由
+
+window.location.href = ‘/test’ // 页面路由
+history.back() // 出栈
+
+### hash路由
+
+window.location.hash = '#test'
+// hash值变化时执行的回调函数
+window.onhashchange = () => (
+  console.log('current router', window.location.hash)
+)
+
+### H5路由
+
+history.pushState(name, title, toPath) // 入栈
+history.replaceState(name, title, toPath) // 不会更改历史记录，替换当前状态值 
+// 出栈时执行的回调函数
+window.onpopstate = (e) => (
+  console.log('h5 router change', e.state)
+)
+
+## 常见Router
+
+* 页面Router: 页面刷新
+* Hash Router: 页面不刷新，但是会改变url
+* H5 Router: 既能操作Hash又能操作路径，兼容性差。和hash类似。页面不刷新，但是会改变url
+
 ## 相互独立的包
+
+`yarn add react-router-dom@v4.2.2`
 
 * `react-router` React Router 核心
 * `react-router-dom` 用于 DOM 绑定的 React Router
@@ -18,6 +60,8 @@
 * `react-router-config` 静态路由配置的小助手
 
 ## `<BrowserRouter>`
+
+用H5的方式来实现的
 
 * basename: string
     * 作用：为所有位置添加一个基准UR
@@ -53,6 +97,7 @@
 
 ## `<Route>`
 
+路由规则
 <Route> 自带三个 render method 和三个 props(match | location | history) 。
 
 ### render method
@@ -73,6 +118,7 @@
 * `<Route render>`
     * 此方法适用于内联渲染，而且不会产生上文说的重复装载问题。
     * 也可用于子路由
+    * render方法会传入route的信息
 
     ```javascript
     // 内联渲染
@@ -166,6 +212,7 @@ const ListIemLink = ({to, ...rest}) => (
 
 ## `<Switch>`
 
+路由选项，解决路由多次匹配的问题
 只渲染出第一个与当前访问地址匹配的 `<Route>` 或 `<Redirect>`
 场景：对于转场动画非常适用，因为被渲染的路由和前一个被渲染的路由处于同一个节点位置！
 ```javascript
@@ -276,6 +323,10 @@ history 对象是可变的，因为建议从 <Route> 的 prop 里来获取 locat
 * 在 Route children 中，以 ({match}) => () 方式获取
 * 在 withRouter 中，以 this.props.match的方式获取
 * matchPath 的返回值
+
+* 取路由中传入的参数值，即：传入的参数;带参数的路由一般放到最后，以避免冲突
+this.props.match.param.id
+* this.props.match.path
 
 
 ## code-splitting
