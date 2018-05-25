@@ -17,4 +17,20 @@
 * max_executable_size
 * max_old_space_size
 * prof
-	
+
+* Buffer
+	* 不受GC控制
+	* 流的转换 | 大字符的读写
+	* 图片 | 文件的上传下载
+	* 8k问题
+
+* http
+	* Server: 前端
+	* Agent: keepAlive(可能有问题)
+
+* urllib
+	* 请求
+	* 实现回调函数
+
+* vm(虚拟机)
+

@@ -63,8 +63,8 @@
 [浏览器渲染Rendering那些事：repaint、reflow/relayout、restyle ](http://www.cnblogs.com/ihardcoder/articles/3927709.html)
 
 Dom元素的增、删、改都会触发
-* reflow/relayout(回流)：位置发生改变，无论是自身还是子节点
-* repaint(重绘)：特性(视觉感官)发生改变
+* reflow(回流)：位置发生改变，无论是自身还是子节点.即DOM树
+* relayout| repaint(重绘)：特性(视觉感官)发生改变。即布局和绘图
 
 **回流一定触发重绘，但是重绘不一定触发回流**
 
