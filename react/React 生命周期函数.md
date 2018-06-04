@@ -36,7 +36,9 @@
 ## componentWillReceiveProps
 
 * void componentWillReceiveProps(object nextProps)
-* 可以根据props的变化，通过调用this.setState()来更新组件的状态
+* 这个函数适合根据新的props值（也就是参数nextProps）来计算出是不是要更新内部状态state
+* 根据props的变化，通过调用this.setState()来更新组件的状态
+* 只要父组件的render函数被调用，在render函数里面渲染的子组件就会经历更新过程，不管父传给子的props有没有改变
 * 旧的属性还是可以通过this.props来获取,
 * 这里调用更新状态是安全的，并不会触发额外的render调用
 
