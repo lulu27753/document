@@ -1,3 +1,7 @@
+
+* 当props或者state被修改时，就会引发组件的更新过程
+* 只有render和shouldComponentUpdate需要返回结果
+
 ## getDefaultProps
 
 * object getDefaultProps()
@@ -19,6 +23,7 @@
 ## render
 
 * ReactElement render()
+* 决定了组件该渲染什么
 * 调用render()
 * 调用render()方法时，首先检查this.props和this.state返回一个子元素，子元素可以是DOM组件或者其他自定义复合控件的虚拟实现
 * 如果不想渲染可以返回null或者false，这种场景下，react渲染一个`<noscript>`标签
@@ -35,16 +40,19 @@
 
 ## componentWillReceiveProps
 
+从这个生命周期开始触发组件的更新过程
+
 * void componentWillReceiveProps(object nextProps)
-* 这个函数适合根据新的props值（也就是参数nextProps）来计算出是不是要更新内部状态state
-* 根据props的变化，通过调用this.setState()来更新组件的状态
 * 只要父组件的render函数被调用，在render函数里面渲染的子组件就会经历更新过程，不管父传给子的props有没有改变
+* 这个函数适合根据新的props值（也就是参数nextProps）来计算出是不是要更新内部状态state
+* 这个生命周期有必要把传入的参数nextProps和this.props作必要的对比，只有两者有变化时才有必要通过调用this.setState()来更新组件的状态
 * 旧的属性还是可以通过this.props来获取,
 * 这里调用更新状态是安全的，并不会触发额外的render调用
 
 ## shouldComponentUpdate
 
 * boolean shouldComponentUpdate(object nextProps, object nextState）
+* 决定了一个组件什么时候不需要渲染
 * 在第二个render之前执行
 * 父组件render和this.setState()都会经过的生命周期函数
     * nextProps: 父组件render时是否渲染
