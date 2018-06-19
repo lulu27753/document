@@ -32,6 +32,8 @@
 
 [react-firebase-starter](https://github.com/kriasoft/react-firebase-starter): React.js, GraphQL.js and Relay
 
+[Documentation — MERN v2.0](http://mern.io/documentation.html)
+
 
 ## React 组件资源
 

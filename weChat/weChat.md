@@ -131,6 +131,7 @@ onTabItemTap | Function | 当前是 tab 页时，点击 tab 时触发
 ## 资源
 
 微信小程序图表插件（wx-charts）
+[awesome-wechat-weapp: 微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp)
 
 
 ## 搭建HTTP服务器

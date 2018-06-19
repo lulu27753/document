@@ -35,3 +35,10 @@
 + 前端基础：HTML、 CSS、JS 、 HTML5 、CSS3、 浏览器相关、http(https)、session、cookie、ajax、jsonp等
 + 计算机基础：计算机网络、算法、数据结构
 + 技能延伸：了解模板引擎、熟悉比较火的前端框架或前端技术，并且研究过源码、对svn或git等版本控制软件的操作、 长期更新博客、 在github上有所贡献等
+
+
+
+
+
+
+

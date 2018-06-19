@@ -27,6 +27,8 @@
 
 [wxc-lottery-rain 红包雨 - Weex Ui](https://alibaba.github.io/weex-ui/#/cn/packages/wxc-lottery-rain/)
 
+[Vuesax](https://lusaxweb.github.io/vuesax/vuesax/)
+
 ## vue-cli
 
 ```bash
