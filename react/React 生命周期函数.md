@@ -1,6 +1,10 @@
 
 * 当props或者state被修改时，就会引发组件的更新过程
 * 只有render和shouldComponentUpdate需要返回结果
+* 不建议在 getDefaultProps、getInitialState、shouldComponentUpdate、componentWillUpdate、render 和 componentWillUnmount 中调用 setState，特别注意：不能在 shouldComponentUpdate 和 componentWillUpdate中调用 setState，会导致循环调用。
+* setState 会先进行 _pendingState 更新队列的合并操作，不会立刻 reRender，因此是异步操作，且通过判断状态（MOUNTING、RECEIVE_PROPS）来控制 reRender 的时机
+
+
 
 ## getDefaultProps
 
