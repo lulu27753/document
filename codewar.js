@@ -6,22 +6,54 @@ function list(names){
 	 const list = names.map((name, index)=> {
 	   return name.name
 	 })
-	 list.join(',')
-	 console.log(list);
-	 return list
+	 list.slice(1)
+	 const result1 = `${list.pop()}`
+	 const result2 = `${list.pop()} & ${result1}`
+	 const result = list.length >0 ? `${list.join(', ')}, ${result2}` : result2
+	 return result
+	} else if (names.length === 1) {
+		return names[0].name
 	} else {
 		const name = names[0] ? name = names[0].name : ''
-		return name
+		return ''
 	}
 }
-list([ {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'} ])
+
+function list(names) {
+  var xs = names.map(p => p.name)
+  var x = xs.pop()
+  return xs.length ? xs.join(", ") + " & " + x : x || ""
+}
+function list(names){
+  return names
+           .map((item) => item.name)
+           .join(', ')
+           .replace(/,\s([^,]+)$/, ' & $1');
+}
+// list([ {name: 'Bart'}, {name: 'Bart'}, {name: 'Lisa'}, {name: 'Maggie'} ])
 // returns 'Bart, Lisa & Maggie'
 
-// list([ {name: 'Bart'}, {name: 'Lisa'} ])
+// console.log(list([ {name: 'Bart'}, {name: 'Lisa'} ]))
 // returns 'Bart & Lisa'
 
-// list([ {name: 'Bart'} ])
+// console.log(list([ {name: 'Bart'} ]))
 // returns 'Bart'
 
-// list([])
+// console.log(list([]))
 // returns ''
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 

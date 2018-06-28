@@ -401,3 +401,6 @@ Vue.use(MyPlugin, {
 })
 ```
 
+## 资源
+
+[这可能是vue-cli最全的解析了](https://juejin.im/post/5b2872516fb9a00e8626e34f?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com)

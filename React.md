@@ -59,8 +59,8 @@ react的功能其实很单一，主要负责渲染的功能，现有的框架，
 
 react的一个组件很明显的由dom视图和state数据组成，两个部分泾渭分明。state是数据中心，它的状态决定着视图的状态。这时候发现似乎和我们一直推崇的MVC开发模式有点区别，没了Controller控制器，那用户交互怎么处理，数据变化谁来管理？然而这并不是react所要关心的事情，它只负责ui的渲染。与其他框架监听数据动态改变dom不同，react采用setState来控制视图的更新。setState会自动调用render函数，触发视图的重新渲染，如果仅仅只是state数据的变化而没有调用setState，并不会触发更新。 组件就是拥有独立功能的视图模块，许多小的组件组成一个大的组件，整个页面就是由一个个组件组合而成。它的好处是利于重复利用和维护。
 
-
 ## React的 Diff算法
+
 react的diff算法用在什么地方呢？当组件更新的时候，react会创建一个新的虚拟dom树并且会和之前储存的dom树进行比较，这个比较多过程就用到了diff算法，所以组件初始化的时候是用不到的。react提出了一种假设，相同的节点具有类似的结构，而不同的节点具有不同的结构。在这种假设之上进行逐层的比较，如果发现对应的节点是不同的，那就直接删除旧的节点以及它所包含的所有子节点然后替换成新的节点。如果是相同的节点，则只进行属性的更改。
 
 对于列表的diff算法稍有不同，因为列表通常具有相同的结构，在对列表节点进行删除，插入，排序的时候，单个节点的整体操作远比一个个对比一个个替换要好得多，所以在创建列表的时候需要设置key值，这样react才能分清谁是谁。当然不写key值也可以，但这样通常会报出警告，通知我们加上key值以提高react的性能。
@@ -343,6 +343,7 @@ connect(state => state, action)(Component);
 1、先引用 react.js，redux，react-router 等基本文件，建议用npm安装，直接在文件中引用。
 
 2、从 react.js，redux，react-router 中引入所需要的对象和方法。
+
 ```javascript
 import React, {Component, PropTypes} from 'react';
 import ReactDOM, {render} from 'react-dom';
@@ -350,6 +351,7 @@ import {Provider, connect} from 'react-redux';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import { Router, Route, Redirect, IndexRoute, browserHistory, hashHistory } from 'react-router';
 ```
+
 3、根据需求创建顶层ui组件，每个顶层ui组件对应一个页面。
 
 4、创建actionCreators和reducers，并用combineReducers将所有的reducer合并成一个大的reduer。利用createStore创建store并引入combineReducers和applyMiddleware。

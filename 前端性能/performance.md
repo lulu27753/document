@@ -25,6 +25,7 @@
 性能判定标准 + 搭建性能优化指标采集环境 + 性能优化解决方案
 
 [性能优化工具](https://www.w3cplus.com/performance/performance-tools.html)
+[lighthouse | Chrome插件](http://chromecj.com/productivity/2017-11/841.html#_motw_)
 
 * 用户浏览web页面的过程
     * 用户输入网址

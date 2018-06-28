@@ -25,3 +25,7 @@
 * 借助服务器端将静态文件 inline 化
     * 这个方式比上面那种更进一步，在第一次响应时把需要放入 localStorage 的文件都内联进 html 中，后面每次响应只要文件版本没有变化，都是渲染一段从 localStorage 加载该文件的代码。这样做的好处是可以有效减少请求次数，即使是第一次
 * 使用 localStorage 缓存文件会有 XSS 的风险
+
+## 其他应用场景
+
+* `redux-localstorage`可以快速执行`localstorage`:```npm install --save redux-localstorage@rc```
