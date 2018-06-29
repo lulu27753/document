@@ -26,6 +26,7 @@
 
 [性能优化工具](https://www.w3cplus.com/performance/performance-tools.html)
 [lighthouse | Chrome插件](http://chromecj.com/productivity/2017-11/841.html#_motw_)
+[hiper](https://github.com/pod4g/hiper/blob/master/README.zh-CN.md)
 
 * 用户浏览web页面的过程
     * 用户输入网址
