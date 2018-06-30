@@ -1,4 +1,4 @@
-## 资源
+## Ant Design资源
 
 本群为面对社区开放的 Ant Design 交流、答疑群，所以请注意不要泄露公司的保密信息。
 
@@ -29,3 +29,17 @@ antd-mobile (移动版) 相关咨询请转：http://www.anijue.com/p/q/antd-mobi
 赞助咖啡☕️（内网）：http://cp.alibaba.net/donates?id=572c3ae27a7f0875d291ac8a
 
 检查网站是否挂掉：http://downforeveryoneorjustme.com/ant.design
+
+## EGG
+
+本群为面对社区开放的 EGG 交流、答疑群，所以请注意不要泄露公司的保密信息。
+
+在问问题前先认真查看官网文档，在 issue 中搜索是否有与你问题相关的问题和回答。
+官网：https://eggjs.org
+issue: https://github.com/eggjs/egg/issues
+
+官方精品文章：https://yuque.com/egg/nodejs
+钉钉机器人推荐信息投稿：https://yuque.com/egg/topics/3
+
+检查官网是否挂了：https://downforeveryoneorjustme.com/eggjs.org
+无需翻墙的官网：https://eggjs.app

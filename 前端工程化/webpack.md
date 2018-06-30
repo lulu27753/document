@@ -1,5 +1,7 @@
 # 移动App - webpack
 
+[深入浅出 Webpack](http://webpack.wuhaolin.cn/)
+
 ## Webpack
 ![webpack](./images/webpack-1.png)
 - [webpack 官网](http://webpack.github.io/)

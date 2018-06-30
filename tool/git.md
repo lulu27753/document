@@ -234,6 +234,20 @@ git rebase --onto master server client // 取出 client 分支，找出处于 cl
 ```
 > 只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作.
 
+### 交互式rebase
+
+```bash
+git checkout feature
+git rebase -i master // 把-i 传入git rebase 选项来开始一个交互式的rebase过程
+```
+
+会打开一个文本编辑器，显示所有将被移动的提交
+```bash
+
+
+```
+
+
 ## 项目管理
 
 ```bash

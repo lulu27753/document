@@ -219,6 +219,7 @@ HTTP 首部字段
 		* domain=域名: 作为Cookie适用对象的域名(若不指定则默认为创建Cookie的服务器的域名)
 		* Secure: 仅在HTTPS安全通信时才会发送Cookie
 		* HttpOnly: 加以限制，使Cookie不能被JavaScript脚本访问
+			* 使用JS的document.cookie无法读取附加该属性后的
 	* Content-Disposition:
 * 逐跳首部(Hop-by-hop Header)
 	* Connection
