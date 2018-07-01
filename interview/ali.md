@@ -34,6 +34,7 @@
 14、box-sizing有哪些属性，用于什么场景
 * content-box
 * border-box
+* 最好在全局reset时便设置box-sizing：content-box，这样不会因为
 15、browserRouter和HashRouter的区别，对于后端来说有什么不同
 16、最近有了解什么新的技术吗？聊聊你对该技术的看法
 * pwa 
@@ -46,6 +47,7 @@
 * 微信公众号
 * 知乎、简书、掘金
 * 极客时间、前端早读课
+* 及时总结，不断补充
 18、react的生命周期函数有哪些？用的最多的有哪些？哪些场景适合用哪个生命周期函数
 19、如何判断两个position:absolute的元素是重叠的
 中心点
@@ -62,6 +64,7 @@ function handleResponse(response){
 ```
 * 缺点：
 21、一个未知宽高元素怎么上下左右垂直居中
+* 对父元素设置：`display:flex`;`justify-content:center`;`align-items:center;`
 22、原型链，对象，构造函数之间的一些联系
 23、DOM事件的绑定的几种方式（冒泡|默认事件|DOM2，DOM3级的一些标准）
 24、说一下你对http2.0,websocket,https的理解及所了解的特性，200和304的理解
@@ -71,7 +74,7 @@ function handleResponse(response){
 28、DOM事件中target和currentTarget的区别
 29、有没有自己写过webpack的loader,说说原理
 * loader用于对模块的源代码进行转换，可以使你在“import”或“加载”模块时预处理文件，因此类似于gulp中的“task”
-* 
+* 输入字符串然后输出字符串
 30、webpack的一些原理和机制，怎么实现的
 31、babel把ES6转成ES5或者ES3之类的原理是什么
 32、ES6的箭头函数this问题，以及拓展运算符
@@ -80,6 +83,8 @@ function handleResponse(response){
 35、业务场景：面对产品不断迭代，以及需求的变动该怎么应对，具体技术方案实现。需求一层一层的改变，然后往下挖，主要是考察应对产品能力，以及对代码的可维护性和可拓展性这些考察，开放性问题，我觉得还考察一些沟通交流方面的能力，因为有些地方面试官故意说得很含糊，反正就是一个综合能力，以及对产品的理解。
 * 怎么获取一个元素到视图顶部的距离
 * getBoundingClientRect获取的top和offsetTop获取的top区别
+	* getBoundingClientRect：距离可视区域顶部的距离，在ie中默认坐标是(2,2)开始的，要考虑兼容性
+	* offsetTop：包括滚动条卷起的部分
 * 事件委托
 36、业务场景：比如说百度的一个服务不想让阿里使用，如果识别到是阿里的请求，然后跳转到404或者拒绝服务？
 主要是考察http协议头Referer，然后怎么判断是阿里的ip
@@ -89,6 +94,7 @@ function handleResponse(response){
 40、怎么实现草稿，多终端同步，以及冲突问题？
 类比git的处理方式
 41、什么是闭包？闭包有什么缺点
+
 42、react的性能优化？用过的性能优化工具
 
 

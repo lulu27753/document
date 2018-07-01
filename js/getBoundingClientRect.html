@@ -1,0 +1,57 @@
+
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+<head>
+ 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+<title>getBoundingClientRect Demo</title>
+ 
+</head>
+ 
+<body style="width:2000px; height:1000px;">
+ 
+<div id="demo" style="position:absolute; left:518px; right:100px; width:500px; height:500px; background:#CC0000; top: 114px;">Demo为了方便就直接用绝对定位的元素</div>
+ 
+<span style="white-space: pre;"></span>
+<script type="text/javascript">
+	document.getElementById('demo').onclick = function() {
+			 
+			if (document.documentElement.getBoundingClientRect) {
+			 
+				// alert("left:" + this.getBoundingClientRect().left);
+				 
+				// alert("top:" + this.getBoundingClientRect().top);
+
+				// alert("right:" + this.getBoundingClientRect().right)
+				 
+				// alert("bottom:" + this.getBoundingClientRect().bottom);
+
+				// alert("scrollLeft" + document.documentElement.scrollLeft);
+				 
+				// alert("scrollTop" + document.documentElement.scrollTop);
+				
+				// document.documentElement.scrollLeft：chrome不支持(其他浏览器的方法) 
+				// document.body.scrollTop：chrome支持(其他浏览器支持) 
+				 
+				var X = this.getBoundingClientRect().left + document.documentElement.scrollLeft;
+				 
+				var Y = this.getBoundingClientRect().top + document.documentElement.scrollTop;
+
+				// var X = this.getBoundingClientRect().left + document.body.scrollLeft;
+				 
+				// var Y = this.getBoundingClientRect().top + document.body.scrollTop;
+				 
+				// alert("Demo的位置是X:" + X + ";Y:" + Y)
+				 
+				console.log("left:", this.getBoundingClientRect().left, "top:", this.getBoundingClientRect().top, "right:", this.getBoundingClientRect().right, "bottom:", this.getBoundingClientRect().bottom, "scrollLeft", document.documentElement.scrollLeft, "scrollTop", document.documentElement.scrollTop, "Demo的位置是X:", X, Y, "offsetTop", this.offsetTop);
+			}
+	 
+	}
+ 
+</script>
+ 
+</body>
+ 
+</html>
