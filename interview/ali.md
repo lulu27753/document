@@ -66,12 +66,36 @@ function handleResponse(response){
 21、一个未知宽高元素怎么上下左右垂直居中
 * 对父元素设置：`display:flex`;`justify-content:center`;`align-items:center;`
 22、原型链，对象，构造函数之间的一些联系
-23、DOM事件的绑定的几种方式（冒泡|默认事件|DOM2，DOM3级的一些标准）
+23、事件的绑定的几种方式（冒泡|默认事件|DOM2，DOM3级的一些标准）
+* 绑定方式
+	* DOM 中绑定
+	* JS绑定，事件处理程序会在事件流的冒泡阶段被处理
+	* 事件监听，要考虑兼容性，可以添加多个事件处理程序
+* [事件执行顺序](https://www.cnblogs.com/greatluoluo/p/5882508.html)
+	* 其他元素捕获阶段事件
+	* 本元素代码顺序事件
+	* 其他元素冒泡阶段事件
+	* 先发生捕获，后发生冒泡
+	* 先从根元素执行捕获到目标元素，再从目标元素向上执行。
+	* 事件委托即利用事件捕获的原理
+	* 利用css阻止事件捕获的传递：pointer-events: none
+	* 阻止冒泡事件：e.stopPropagation(); e.cancelBubble = true
+	* 某些事件类型天生不支持事件冒泡
 24、说一下你对http2.0,websocket,https的理解及所了解的特性，200和304的理解
 25、webpack的入口文件怎么配置，多个入口怎么分割
+	* 输出文件名不写死，改成中括号变量的形式
 26、说一下你对Babel里面的transform-runtime以及stage-2的作用
+* polyfill
+* 向下兼容草案
 27、webpack配置用到webpack.optimize.UglifyJsPlugin这个插件，有没有觉得压缩速度很慢，有什么办法提升速度。
+* 减少文件搜索范围：resolve | alias | test | include | exclude 
+* 多线程：Happypack
+* 缓存：babel的cacheDirectory
 28、DOM事件中target和currentTarget的区别
+* target：事件流的目标阶段
+* currentTarget：事件流的捕获，目标及冒泡阶段
+* 只有当事件流处在目标阶段的时候，两个的指向才是一样的，而当处于捕获和冒泡阶段的时候，target指向被单击的对象而currentTarget指向当前事件活动的对象(注册该事件的对象)（一般为父级）
+* this指向永远和currentTarget指向一致（只考虑this的普通函数调用）
 29、有没有自己写过webpack的loader,说说原理
 * loader用于对模块的源代码进行转换，可以使你在“import”或“加载”模块时预处理文件，因此类似于gulp中的“task”
 * 输入字符串然后输出字符串
@@ -87,9 +111,14 @@ function handleResponse(response){
 	* offsetTop：包括滚动条卷起的部分
 * 事件委托
 36、业务场景：比如说百度的一个服务不想让阿里使用，如果识别到是阿里的请求，然后跳转到404或者拒绝服务？
-主要是考察http协议头Referer，然后怎么判断是阿里的ip
+* 首先思考怎么识别到是阿里的IP的
+* http协议头Referer，host
 37、二分查找的时间复杂度怎么求，是多少
 38、XSS是什么，攻击原理，怎么预防。
+* 利用script、<IMG>、<IFRAME>等各种方式使得用户浏览这个页面时，触发对被攻击站点的http请求
+* 内部攻击：WEB程序没有对用户输入作充分的检查和过滤
+* 外部攻击：自己构造一个跨站网页放在自己的服务器上，然后结合其他技术，如社会工程学等，欺骗目标服务器的管理员打开。威胁相对较低，至少ajax要发起跨站调用是非常困难的
+* 
 39、线性顺序存储结构和链式存储结构有什么区别？以及优缺点
 40、怎么实现草稿，多终端同步，以及冲突问题？
 类比git的处理方式
