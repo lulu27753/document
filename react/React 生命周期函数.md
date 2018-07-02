@@ -92,3 +92,49 @@
 * 在 React 16.x 版本中，引入了所谓 Error Boundary 的概念，从而保证了发生在 UI 层的错误不会连锁导致整个应用程序崩溃；未被任何异常边界捕获的异常可能会导致整个 React 组件树被卸载。
 * 所谓的异常边界即指某个能够捕获它的子元素（包括嵌套子元素等）抛出的异常，并且根据用户配置进行优雅降级地显示而不是导致整个组件树崩溃。
 * 异常边界能够捕获渲染函数、生命周期回调以及整个组件树的构造函数中抛出的异常。
+
+
+## V16.3 最新变化
+
+1. 去掉了3个方法
+* componentWillMount
+* componentWillReceiveProps
+* componentWillUpdate
+
+2. 增加了2个方法
+* static getDerivedStateFromProps(nextProps, prevState)
+* getSnapshotBeforeUpdate(prevProps, prevState)
+
+3. 更改了1个方法，增加了第3个参数
+
+* componentDidUpdate(prevProps, prevState, snapshot)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

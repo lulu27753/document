@@ -51,7 +51,7 @@
 18、react的生命周期函数有哪些？用的最多的有哪些？哪些场景适合用哪个生命周期函数
 19、如何判断两个position:absolute的元素是重叠的
 中心点
-20、有用过哪些跨域工具，jsonp为什么可以跨域？以及cors怎么设置
+20、有用过哪些跨域工具，jsonp为什么可以跨域？以及cors怎么设置，后端API如何解决跨域问题
 * 原理：动态创建`<script>`标签，然后利用`<script>`的src 不受同源策略约束来跨域获取数据。
 * JSONP 由两部分组成：回调函数和数据。动态创建`<script>`标签，设置其src，回调函数在src中设置：
 ```java
@@ -125,6 +125,11 @@ function handleResponse(response){
 41、什么是闭包？闭包有什么缺点
 
 42、react的性能优化？用过的性能优化工具
+43、bind的pollyfill实现
+44、setTimeout | Promise的实现
+45、react16.3移除了哪些新的周期函数，新增了哪些周期函数
+46、this的指向问题
+47、
 
 
 

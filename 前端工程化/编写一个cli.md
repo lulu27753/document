@@ -64,6 +64,7 @@ shelljs同样是一个很轻量的Node编写的系统命令封装，可以很便
 ## 参考资料
 
 [npm link](https://github.com/atian25/blog/issues/17)
+[Vue-cli源码](https://segmentfault.com/a/1190000013975247)
 
 
 
