@@ -106,7 +106,6 @@
 * getSnapshotBeforeUpdate(prevProps, prevState)
 
 3. 更改了1个方法，增加了第3个参数
-
 * componentDidUpdate(prevProps, prevState, snapshot)
 
 

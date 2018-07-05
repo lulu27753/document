@@ -9,6 +9,15 @@ brew install mysql
 执行`vim ~/.bash_profile`,在该文件中添加mysql/bin的目录,`PATH=$PATH:/usr/local/mysql/bin`
 `source ~/.bash_profile`
 
+
+## 重置密码
+
+```bash
+mysql> USE mysql
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+mysql> FLUSH PRIVILEGES;
+```
+
 ## 命令
 
 ```bash
