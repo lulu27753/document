@@ -102,6 +102,10 @@
 * Huge Impact with Small Teams
 * Be Bold and Innovative
 * 代码对于一个软件工程师就是尊严。
+* 当你遇到困惑不知道该怎么办，永远记住:Read-Search-Ask。
+    * Read the error
+    * search google
+    * ask for help
 
 
 
