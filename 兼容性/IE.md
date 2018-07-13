@@ -25,10 +25,29 @@ new CSSSplitWebpackPlugin({
 * **ajax**是activeXObject
 * **innerHtml**IE中不能操作tr的innerHtml
 * **获取DOM节点**
+
     * IE: parentElement | parentElement.children
     * other: parentNode | parentNode.childNodes
 
+## 在HTML中禁止IE缓存
+
+IE浏览器提供的ajax对象在发送get请求时，会查看请求地址
+是否访问过，如果访问过，则显示第一次访问的结果（也就是说，
+会将第一次访问的结果缓存下来）
+
+* 在Head里添加禁止使用缓存的代码
+
+```html
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
+```
+
+* 将所有的ajax调用都改为post方法
+* 在请求地址后面添加随机数或者时间戳,
+    比如xhr.open('get','luck.do?'+Math.random(),true);
 
 ## 兼容性测试工具
 
 * [browserling](https://browserling.com/)
+* [在HTML中禁止IE缓存](https://blog.csdn.net/cooldiok/article/details/79134245)

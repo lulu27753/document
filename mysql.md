@@ -14,7 +14,7 @@ brew install mysql
 
 ```bash
 mysql> USE mysql
-mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin123';
 mysql> FLUSH PRIVILEGES;
 ```
 

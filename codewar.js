@@ -127,7 +127,8 @@ function array_diff(a, b) {
 // 	for example 2: nnnnn or 1: hhh; it contains the prefix) will be in decreasing order of their length and when they have the same length sorted in ascending lexicographic order(letters and digits - more precisely sorted by codepoint);
 // the different groups will be separated by '/'.See examples and "Example Tests".
 function mix(s1, s2) {
-	return s1.split('')
+	s1.split('')  
+	s2.split('')
 }
 console.log(mix("Are they here", "yes, they are here"), "2:eeeee/2:yy/=:hh/=:rr")
 console.log(mix("looping is fun but dangerous", "less dangerous than coding"), "1:ooo/1:uuu/2:sss/=:nnn/1:ii/2:aa/2:dd/2:ee/=:gg")
