@@ -16,5 +16,7 @@ su - 用户名 # -和用户名之间有空格
 ```
 
 
+## 资源
 
+[mac下添加sublime text打开快捷键 subl](https://blog.csdn.net/beyond__devil/article/details/54312050)
 

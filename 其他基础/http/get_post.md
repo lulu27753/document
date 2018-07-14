@@ -195,7 +195,7 @@ HTTP 首部字段
 	* Host: 请求资源所在服务器
 	* If-Match: 比较实体标记(ETag)
 	* If-None-Match: 比较实体标记
-	* If-Modified-Since: 比较资源的更新时间
+	* If-Modified-Since(IMS请求): 比较资源的更新时间
 	* If-Unmodified-Since: 比较资源的更新时间
 	* If-Range: 资源未更新时发送实体Byte的范围请求
 	* Max-Forwards: 最大传输逐跳数
@@ -214,6 +214,7 @@ HTTP 首部字段
 	* Server: HTTP服务器的安装信息
 	* Vary: 代理服务器缓存的管理信息
 	* WWW-Authenticate: 服务器对客户端的认证信息
+	* Last-Modified: 最后修改日期
 * 实体首部字段
 	* Allow: 资源可支持的HTTP方法
 	* Content-Encoding: 实体主体适用的编码方式
@@ -285,6 +286,12 @@ If-Modified-Since: 告诉服务器，只有在缓存了对象的副本后，又�
 * 再验证命中：304 Not Modified
 * 再验证未命中：200 OK
 * 对象被删除：404 Not Found, 缓存也会将其副本删除
+
+HTTP不支持兄弟缓存，所以通过ICP(Internet Cache Protocol)和HTCP(HyperText Caching Protocol)等协议进行拓展。
+
+缓存再验证：
+`If-Modified-Since:<date>`: 如果从指定日期之后文档被修改过了，就执行请求的方法。可以与Last-Modified服务器响应首部配合使用，只有在内容被修改后与已缓存版本有所不同的时候才会去获取内容
+`If-None-Match:<tags>`: 服务器可以为文档提供特殊的标签(ETag),而不是将其与最近修改日期相匹配，这些标签就像序列号一样，如果已缓存标签与服务器文档中的标签有所不同，If-None-Match就会执行所请求的方法
 
 ## HTTP请求协议格式
 
