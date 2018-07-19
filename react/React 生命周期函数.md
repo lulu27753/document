@@ -67,7 +67,7 @@
 * 默认情况下，shouldComponentUpdate方法返回true防止state快速变化时的问题，
 * 但是如果·state不变，props只读，可以直接覆盖shouldComponentUpdate用于比较props和state的变化，决定UI是否更新
 
-## componentWillUpdate
+## componentWillUpdate（删除）
 
 * void componentWillUpdate(object nextProps, object nextState)
 * 当props和state发生变化时执行

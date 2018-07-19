@@ -23,4 +23,4 @@ webpack的bug导致如果本地开发目录路径不一致，编译出来的md5�
 
 ## 资源
 [webpack 热加载原理探索](http://shepherdwind.com/2017/02/07/webpack-hmr-principle/)
-
+[请手写一个webpack4.0配置](https://juejin.im/post/5b4609f5e51d4519596b66a7)

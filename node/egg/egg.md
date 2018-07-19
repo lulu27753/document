@@ -8,4 +8,6 @@
 * 框架稳定，测试覆盖率高
 * 渐进式开发
 
-# 
+## 资源
+
+[跨域](https://github.com/eggjs/egg/issues/725)

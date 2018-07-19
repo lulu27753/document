@@ -1,6 +1,17 @@
+## PWA
+
+核心技术：
+* App Manifest
+* Service Worker
+* Web Push
+* Credential Management ApI
+
+
 ## 三个关键技术
 
 ### Service Worker (服务工厂)
+
+解决离线的问题
 
 * 离线缓存文件
 * 是浏览器在后台独立于网页运行的脚本
@@ -52,6 +63,8 @@
 
 ### Manifest（应用清单）
 
+解决在桌面创建快捷方式的问题
+
 * 基于 JSON 的 List
 * 能够将你浏览的网页添加到你的手机屏幕上
 * 在 Android 上能够全屏启动，不显示地址栏 （ 由于 Iphone 手机的浏览器是 Safari ，所以不支持哦）
@@ -63,8 +76,8 @@
 
 ### Push Notification（推送通知）
 
-* Push：服务器端将更新的信息传递给 SW
-* Notification：SW 将更新的信息推送给用户
+* Push API：服务器端将更新的信息传递给 SW。即提供了让服务器能够向用户发送离线消息的能力，即使用户当前并没有打开你的页面，甚至没有打开浏览器。
+* Notification API：SW 将更新的信息推送给用户。提供了开发者可以给用户发送通知的能力，包括申请显示通知权限，发起通知，以及定制通知的类型等。兼容性：IOS Safari 至今不支持
 
 
 ## Demo
@@ -74,6 +87,10 @@
 安装node && [Ngrok](https://blog.csdn.net/tomcat_2014/article/details/68944066)
 [Sunny-Ngrok内网转发](https://www.ngrok.cc/)
 
+
+## tool
+
+命令行工具：Lavas
 
 ## 资源
 
