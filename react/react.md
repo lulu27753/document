@@ -38,6 +38,8 @@
 ## React 组件资源
 
 [noform - 表单框架](https://alibaba.github.io/noform/#/docs?md=basic/core)
+[React Joyride | 首次登录新手引导提示 |Create walkthroughs, tours and tooltips for your apps](http://gilbarbara.github.io/react-joyride/)
+[shipshapecode/shepherd: Guide your users through a tour of your app](https://github.com/shipshapecode/shepherd)
 
 ## 学习规划
 

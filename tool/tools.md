@@ -18,6 +18,7 @@
 
 ## 其他
 
+[window超速网盘]http://pandownload.com/
 
 ## 参考教程
 

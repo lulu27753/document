@@ -196,7 +196,13 @@ class Store {
 * reaction
 
 
+## mobx实现todoList
 
+yarn add mobx-react react react-dom prop-types
+yarn add babel-preset-react
+
+配置webpack.config.js
+`presets: [['env', 'react']],`
 
 
 
