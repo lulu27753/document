@@ -123,14 +123,12 @@ function handleResponse(response){
 40、怎么实现草稿，多终端同步，以及冲突问题？
 类比git的处理方式
 41、什么是闭包？闭包有什么缺点
-
 42、react的性能优化？用过的性能优化工具
 43、bind的pollyfill实现
 44、setTimeout | Promise的实现
 45、react16.3移除了哪些新的周期函数，新增了哪些周期函数
 46、this的指向问题
 47、
-
 
 
 

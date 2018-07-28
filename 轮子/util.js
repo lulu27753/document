@@ -61,6 +61,25 @@ function chunkArr(arr, size) {
   }                
   return result;
 }
+/*
+* 给定数字范围求和
+* @param arr: 数组,数字范围
+* @returns {number}：返回和
+*/
+
+function sumAll(arr) {
+    var left = Math.min.apply(null, arr);
+    var right = Math.max.apply(null, arr);
+    var numArr = [];
+ 
+    for (var i = left; i <= right; i++) {
+        numArr.push(i);
+    }
+ 
+    return numArr.reduce(function(prev, next) {
+        return prev + next;
+    })
+}
 
 
 

@@ -47,7 +47,7 @@
 从这个生命周期开始触发组件的更新过程
 
 * void componentWillReceiveProps(object nextProps)
-* 只要父组件的render函数被调用，在render函数里面渲染的子组件就会经历更新过程，不管父传给子的props有没有改变
+* 一个组件要从父组件接受参数，只要父组件的render函数被重新调用，在render函数里面渲染的子组件就会经历更新过程，不管父传给子的props有没有改变
 * 这个函数适合根据新的props值（也就是参数nextProps）来计算出是不是要更新内部状态state
 * 这个生命周期有必要把传入的参数nextProps和this.props作必要的对比，只有两者有变化时才有必要通过调用this.setState()来更新组件的状态
 * 旧的属性还是可以通过this.props来获取,

@@ -20,6 +20,25 @@
 
 [window超速网盘]http://pandownload.com/
 
+
+## macPro APP
+
+* VNC Server
+* VNC Viewer
+* VNC Address Book
+* SourceTree
+* Charles
+* QIpmsg
+* Robo 3T
+* SunloginClient
+* DaisyDisk
+* [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG)
+* Expo XDE
+* Dr. Cleaner
+* Apowerso Recorder
+* manager-osx(XAMPP)
+
+
 ## 参考教程
 
 [Emmet](https://www.w3cplus.com/tools/emmet-cheat-sheet.html)
