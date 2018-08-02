@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第四章 v-bind_class_style</title>
+</head>
+<body>
+    <div id="app">
+        <a :href="url" :class="{'active': isActive, 'error': isError}" class="static">链接</a>
+        <img :src="imgUrl" :class="[{'active': isActive}, errorCls]" >
+        <button :class="classes" :style="{'color': color}">单击</button>
+    </div>
+    <div id="app2">
+        <my-component :class="{'active': isActive}"></my-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                url: 'https://www.github.com',
+                imgUrl: 'http:// ../img.png',
+                isActive: true,// 为真时才会被应用
+                isError: false,
+                errorCls: 'error',// 会始终应用
+                size: 'lg',
+                disabled: true,
+                color: 'red',            },
+            computed: {
+                classes: function () {
+                    return [
+                        'btn',
+                        {
+                            [`btn-${this.size}`]: this.size !== '',
+                            [`btn-disabled`]: this.disabled,
+                            
+                        }
+                    ]
+                }
+            },
+            methods: {
+                
+
+            }
+        })
+        Vue.component('my-component', {
+            template: '<p class="article">一些文本</p>'
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                isActive: true,
+                
+            }
+        })
+    </script>
+</body>
+</html>

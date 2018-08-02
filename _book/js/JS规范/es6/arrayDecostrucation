@@ -1,0 +1,1 @@
+let [x,y,z] = new set(['a','b','c']);

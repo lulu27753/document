@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第二章 数据绑定和第一个Vue应用_指令与事件</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="show">显示这段文本</h1><br />
+        <button v-on:click="handleClose">点击{{text}}</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                show: true,
+                text: '隐藏',
+            },
+            methods: {
+                init: function (text) {
+                    console.log(text);
+                },
+                handleClose: function () {
+                    this.close();
+                },
+                close: function () {
+                    this.show = !this.show;
+                    if (this.show) {
+                        this.text = '隐藏'
+                    } else {
+                        this.text = '显示'
+                    }
+                }
+            },
+            mounted: function () {
+                this.init('在初始化时调用');
+            }   
+        })
+       app.init('通过外部调用')
+    </script>
+</body>
+</html>

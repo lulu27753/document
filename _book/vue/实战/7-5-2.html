@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第七章 组件_组件高级用法_内联模板</title>
+</head>
+<body>
+    <div id="app">
+        <child-component inline-template>
+            <div>
+                <h2>在父组件中定义子组件的模板</h2>
+                <!-- 为什么父组件的数据没有渲染出来 -->
+                <p>{{ message }}</p>
+                <P>{{ msg }}</P>
+            </div>
+        </child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // 全局注册组件
+        Vue.component('child-component', {
+            data: function () {
+                return {
+                    msg: '在子组件声明的数据'
+                }
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '在父组件声明的数据'
+            }
+        })
+    </script>
+</body>
+</html>

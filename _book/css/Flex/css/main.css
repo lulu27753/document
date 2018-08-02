@@ -1,0 +1,160 @@
+body {
+    padding: .2rem;
+}
+h1 {
+    font-size: 1rem;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}
+h2 {
+    margin-top: .3rem;
+}
+
+.marginB {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.center {
+    /* text-align: center; */
+    padding-top: 20px;
+}
+.inline {
+    display: inline-block;
+    margin-right: .3rem;    
+}
+.tradition {
+    margin: .5rem auto;
+    margin-right: .3rem;
+    width: 8rem;
+    height: 5rem;
+    background: #ccc;
+    position: relative;
+}
+
+.tradition div {
+    position: absolute;
+    left: 50%; 
+    top: 50%;
+    margin-left: -1rem;
+    margin-top: -1rem;
+    
+    width: 2rem;
+    height: 2rem;
+    background: darkorange;
+}
+
+
+.wrapper {
+    margin-bottom: 20px;
+}
+.flexbox {
+   width: 8rem;
+   height: 5rem;
+   background: #ccc;
+
+   display: flex;
+}
+.flexbox div {
+    width:2rem;
+    height: 2rem;
+    background: blue;
+
+    margin: auto;
+}
+
+.clearHeight {
+    height: auto!important;
+}
+
+
+.bg {
+    background: #ccc;
+    width: 10rem;
+    height: 7rem;
+    margin: .3rem;
+}
+
+.btn {
+    display: inline-block;
+    width: 3rem;
+    height: .8rem;
+    background: #000;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 1rem;
+}
+/* 容器的属性 */
+.container {
+   display: flex; 
+} 
+.container2 {
+     background: #ccc;
+    width: 10rem;
+    /* height: 7rem; */
+    margin: .3rem;
+}
+
+.item{
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.itemPlus {
+    width: 3.5rem;
+    height: 2rem;
+    line-height: 2rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.item1 {
+    background: #f55;
+}
+.item2 {
+    background:darkorange;
+}
+
+.item3 {
+    background:#0f0;
+}
+
+
+.width {
+    width: 100px;
+    /* height: auto; */
+}
+
+.span {
+    font-size: 14px;
+}
+
+
+.flexshrink1 {
+    width: 200px;
+    height: 100px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.flexshrink2 {
+    width: 300px;
+    height: 100px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.flexshrink3 {
+    width: 400px;
+    height: 100px;
+    font-size: 40px;
+    text-align: center;
+    line-height: 100px;
+}
+

@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第七章 组件_使用slot分发内容_作用域插槽</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用一个可以复用的模版替换已渲染元素-->
+        <child-component>
+            <template slot-scope="props">
+                <!-- template可以通过临时变量props访问来自子组件插槽的数据msg -->
+                <p>来自父组件的内容</p>
+                <p>{{ props.msg }}</p>
+            </template>
+        </child-component>
+        <my-list :book="books">
+            <template slot="book" slot-scope="props">
+                <li>{{ props.bookName }}</li>
+            </template>
+        </my-list>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // 全局注册组件
+        Vue.component('child-component', {
+            template: '\
+                <div class="container">\
+                    <slot msg="来自子组件的内容"></slot>\
+                </div>'
+        })
+        Vue.component('my-list', {
+            props: {
+                books: {
+                    type: Array,
+                    default: function () {
+                        return [];
+                    }
+                }
+            },
+            template: '\
+            <ul>\
+                <slot name="book" v-for="book in books" :hook-name="book.name">\
+                    <!-- 这里也可以写默认slot内容 -->\
+                </slot>\
+            </ul>'
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {name: '《Vue.js实战》'},
+                    {name: '《JavaScript语言精粹》'},
+                    {name: '《JavaScript高级程序设计》'},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

@@ -169,6 +169,7 @@ const store = createStore(
 yarn add antd
 yarn add babel-plugin-import --dev
 ```
+
 ## UI 组件 及 容器组件
 
 * UI 组件：负责渲染
@@ -204,6 +205,75 @@ const enhancer = composeEnhancers(
 );
 ```
 * redux-saga
+
+```bash
+yarn add redux-saga
+
+```
+
+## react-redux
+
+```bash
+yarn add react-redux
+```
+- Provider: 连接store
+- connect: 获取store里面的数据，替代store.getState()
+- bindActionCreators: 隐式调用dispatch(action)
+
+
+## styled-components
+
+```bash
+yarn add styled-components
+```
+
+[styled-components官网](https://www.styled-components.com/)
+
+- injectGlobal：生成全局的样式
+- styled
+- attrs({}): 传入props对象
+- &
+
+[Reset_CSS 官网](https://meyerweb.com/eric/tools/css/reset/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

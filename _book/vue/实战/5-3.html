@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第五章 内置指令_列表渲染指令</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(book, index) in sortedBooks">{{index + 1}}-{{book.name}}</li>
+            <div v-for="(user, key, index) in users">{{index}}-{{key}}:{{user}}  </div>
+            <div v-for="n in 10" :key="n">
+                {{ n }}
+            </div>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                books: [{
+                    name: 'Vue实战',
+                },
+                {
+                    name: 'JS语言精粹',
+                },
+                {
+                    name: 'JS高级程序设计',
+
+                }],
+                users:{
+                    name: 'Aresn',
+                    gender: '男',
+                    age: 26,
+                }
+            },
+            computed: {
+                // filterBooks依赖books，但是不会修改books
+                filterBooks: function () {
+                    return this.books.filter(function (book) {
+                        return book.name.match(/JS/);
+                    })
+                },
+                // 按照书名的长度由长到短进行排序
+                sortedBooks: function () {
+                    return this.filterBooks.sort(function (a, b) {
+                        return a.name.length < b.name.length;
+                    })
+                }
+            },
+            methods: {
+                handleToggleClick: function () {
+                    this.type = this.type === 'name' ? 'mail' : 'name'
+                }
+            }
+        });
+        app.books.push({
+            name: 'CSS揭秘',
+            author: 'Lea Verou',
+        });
+        // 筛选书名中含有“JS”的选项
+        app.books = app.books.filter(function (item) {
+            return item.name.match(/JS/)
+        })
+        Vue.set(app.books, 3, {
+            name: 'Css揭秘'
+        })
+    </script>
+</body>
+</html>

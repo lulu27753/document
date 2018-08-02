@@ -1,0 +1,5 @@
+* [Sunny-Ngrok内网转发](https://www.ngrok.cc/)
+* [mac使用ngrok将本地Web服务映射到外网](https://blog.csdn.net/tomcat_2014/article/details/68944066)
+* [Navicat Premium for Mac v12.0.22.0 破解教程 - MYSQL](https://www.jianshu.com/p/f42785e55b6b)
+* [做代码审查必须得有工具，推荐15款最佳代码审查工具](https://blog.csdn.net/snshl9db69ccu1aikl9r/article/details/78467056)
+* [fiddler | Chrome插件](http://chromecj.com/web-development/2018-05/1413.html)
