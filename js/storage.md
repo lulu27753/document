@@ -28,4 +28,6 @@
 
 ## 其他应用场景
 
-* `redux-localstorage`可以快速执行`localstorage`:```npm install --save redux-localstorage@rc```
+* `redux-localstorage`可以快速执行`localstorage`:
+
+```npm install --save redux-localstorage@rc```

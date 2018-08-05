@@ -1,6 +1,6 @@
 ## 路由使用场景
 
-* 如果是功能复杂的网站，建议后端路由，不建议大型网站用前端路由，太重（通常来说就是整个网站，也可能是功能单一的大型网站，比如携程这样的）
+* 如果是功能复杂的网站，建议后端路由，不建议大型网站用前端路由，太重（通常来说就是整个网站，也可以是功能单一的大型网站，比如携程这样的）
 * 功能单一的网站，比如webapp那种，建议前端路由（通常说的单页应用SPA）
 * 页面有很多组件复用的情况，建议前端路由（如果页面功能复杂，参考第一条）
 * 无所谓前端还是后端路由的网站，比如后台管理系统，那就前端路由吧，毕竟无论是Vue还是React,都有好几个搭配的UI库，前端路由会比较顺心
@@ -17,9 +17,9 @@
 
 ## 原生路由方法
 
-window.location
-window.location.pathname
-window.location.search
+* window.location
+* window.location.pathname
+* window.location.search
 
 ### 页面路由
 
@@ -93,7 +93,7 @@ window.onpopstate = (e) => (
     `<BrowserRouter keyLength={12} />`
 * children: node
     * 作用：渲染唯一子元素
-    * 场景：作为一个 Reac t组件，天生自带 children 属性
+    * 场景：作为一个 React组件，天生自带 children 属性
 
 ## `<Route>`
 
@@ -177,14 +177,16 @@ const ListIemLink = ({to, ...rest}) => (
 * to: object
     * 作用：携带参数跳转到指定路径
     * 场景：比如你点击的这个链接将要跳转的页面需要展示此链接对应的内容，又比如这是个支付跳转，需要把商品的价格等信息传递过去。
-    ```javascript
+
+```
     <Link to={{
-    pathname: '/course',
-    search: '?sort=name',
-    state: { price: 18 }
+      pathname: '/course',
+      search: '?sort=name',
+      state: { price: 18 }
     }} />
     <Link to="/courses" />
-    ```
+```
+
 * replace: bool
     * 为 true 时，点击链接后将使用新地址替换掉上一次访问的地址，什么意思呢，比如：你依次访问 '/one' '/two' '/three' ’/four' 这四个地址，如果回退，将依次回退至 '/three' '/two' '/one' ，这符合我们的预期，假如我们把链接 '/three' 中的 replace 设为 true 时。依次点击 one two three four 然后再回退会发生什么呢？会依次退至 '/three' '/one'！
     * 场景：在用 路由 做选项卡时候会用到

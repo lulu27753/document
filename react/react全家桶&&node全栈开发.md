@@ -49,7 +49,7 @@ yarn run eject  # 将所有内建的配置暴露出来
 
 ```javascript
 const express = require('express');
-c
+
 // 新建app
 const app = express()
 app.get('/', function (req, res) {
@@ -66,6 +66,7 @@ app.listen(9093, function () {
 ## Mongodb + mongoose
 
 1、Mac下安装:`brew install mongodb`
+
 2、创建数据库目录
 
 ```bash
