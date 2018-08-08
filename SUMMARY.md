@@ -33,6 +33,7 @@
 	* [yeoman](tool/yeoman.md)
 	* [网盘搜索引擎](tool/网盘搜索引擎.md)
 	* [如何优雅的高效使用MAC OSX系统](tool/how-to-use-mac-efficiently.md)
+	* [dash](tool/dash.md)
 * 基础篇
 	* 样式篇
 		* [居中](css/居中.md)
@@ -63,6 +64,7 @@
 	* [异步](interview/异步.md)
 	* [虚拟DOM](interview/virtual_dom.md)
 	* [组件化](interview/组件化.md)
+	* [hybrid](interview/hybrid.md)
 * 产品篇
 	* [开源](产品/index.md)
 	* 

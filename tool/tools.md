@@ -40,7 +40,7 @@
 * Dr. Cleaner
 * Apowerso Recorder
 * manager-osx(XAMPP)
-
+* [Dash](https://kapeli.com/dash)
 
 ## 参考教程
 
