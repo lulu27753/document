@@ -128,7 +128,8 @@ function handleResponse(response){
 44、setTimeout | Promise的实现
 45、react16.3移除了哪些新的周期函数，新增了哪些周期函数
 46、this的指向问题
-47、
+47、React引用组件的方式有哪几种？
+48、redux的reducer里面提倡重新拷贝一份state数据，为什么要这样做？如果不这样做React会渲染么？为什么？
 
 
 

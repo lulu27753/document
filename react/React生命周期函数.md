@@ -95,6 +95,26 @@
 * 异常边界能够捕获渲染函数、生命周期回调以及整个组件树的构造函数中抛出的异常。
 
 
+## 生命周期阶段
+
+- 首次渲染
+	- willMount
+	- render
+	- didMount
+- props更新时
+	- receiveProps
+	- shouldUpdate
+	- willUpdate
+	- render
+	- didUpdate
+- state更新时
+	- shouldUpdate
+	- willUpdate
+	- render
+	- didUpdate
+- 卸载
+	- willUnmount
+
 ## V16.3 最新变化
 
 1. 去掉了3个方法
@@ -109,6 +129,17 @@
 3. 更改了1个方法，增加了第3个参数
 	* componentDidUpdate(prevProps, prevState, snapshot)
 
+## V17 
+
+渲染机制变成Async Render：
+在dom真正render之前，React中的调度机制可能会不定期的去查看有没有更高优先级的任务，
+如果有，就打断当前的周期执行函数(哪怕已经执行了一半)，等高优先级任务完成，再回来重新执行之前被打断的周期函数。
+
+### 新增
+
+1. UNSAFE_componentWillMount
+2. UNSAFE_componentWillReceiveProps 
+3. UNSAFE_componentWillUpdate
 
 
 
