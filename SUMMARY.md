@@ -22,6 +22,7 @@
 	* [Webpack 打包优化之速度篇](前端工程化/webpack打包速度篇.md)
 	* [Webpack中publicPath详解](前端工程化/Webpack中publicPath详解.md)
 	* [webpack打包CSS](前端工程化/webpack打包CSS.md)
+	* [自动化部署](前端工程化/自动化部署.md)
 * 工具篇
 	* [git](tool/git.md)
 	* [gitbook](tool/gitbook.md)
@@ -65,6 +66,8 @@
 	* [虚拟DOM](interview/virtual_dom.md)
 	* [组件化](interview/组件化.md)
 	* [hybrid](interview/hybrid.md)
+	* [webpack](interview/webpack.md)
+	* [路由](interview/路由.md)
 * 产品篇
 	* [开源](产品/index.md)
 	* 

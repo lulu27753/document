@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第二章 数据绑定和第一个Vue应用</title>
+</head>
+<body>
+    <div id="app">
+        <input v-model="name" type="text" placeholder="你的名字"/>
+        <h1>你好， {{name}} </h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                name: 'lulu'
+            },
+            // 实例创建完成后，此阶段完成了数据的观测等，但尚未挂载，$el还不可用，需要初始化处理一些数据时比较有用
+            created: function () {
+                console.log(this.$el);
+            },
+            // el挂载到实例上后调用，一般第一个业务逻辑会在这里开始
+            mounted: function () {
+                console.log(this.$el);
+            },
+            // 实例销毁之前调用。主要解绑一些使用addEventListener监听的事件
+            beforeDestroy: function () {
+                console.log(this.$el);
+                console.log(1);
+            },
+        })
+        console.log(app.name);
+        // console.log(app.data);
+    </script>
+</body>
+</html>

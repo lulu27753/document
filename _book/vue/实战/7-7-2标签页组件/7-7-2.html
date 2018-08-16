@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第七章 组件_组件高级用法_异步组件</title>
+</head>
+<body>
+    <div id="app">
+        <div id="div" v-if="showDiv">这是一段文本</div>
+        <button @click="getText">获取div内容</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                showDiv: false
+            },
+            methods: {
+                getText: function () {
+                    this.showDiv = true;
+                    // 抛出类型错误
+                    // Vue在观察数据变化时并不是直接更新DOM,而是开启一个队列，
+                    // 并缓冲在同一事件循环中发生的所有数据改变。
+                    // 在缓冲时会去除重复数据，从而避免不必要的计算和DOM操作
+                    // 然后，在下一个事件循环tick中，Vue刷新队列并执行实际(已去重的)工作
+                    // var text = document.getElementById('div').innerHTML;
+                    this.$nextTick(function () {
+                        var text = document.getElementById('div').innerHTML;
+                        console.log(text);
+                    })
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

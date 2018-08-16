@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>addEventListener</title>
+</head>
+<body>
+	<div id='one'>
+	  <div id='two'>
+	    <div id='three'>
+	      <div id='four'>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script type='text/javascript'>
+	  var one=document.getElementById('one');
+	  var two=document.getElementById('two');
+	  var three=document.getElementById('three');
+	  var four=document.getElementById('four');
+		// 1.冒泡是从下向上，DOM元素绑定的事件被触发时，此时该元素为目标元素，目标元素执行后，它的的祖元素绑定的事件会向上顺序执行
+		
+		//  点击one元素，输出one；
+	  one.addEventListener('click',function(){
+	    console.log('one');
+	  },false);
+
+		// 点击two元素，输出two one;
+	  two.addEventListener('click',function(){
+	    console.log('two');
+	  },false);
+
+		// 点击three元素，输出 three two one；
+	  three.addEventListener('click',function(){
+	    console.log('three');
+	  },false);
+
+		// 点击four元素，输出 four three two one；
+	  four.addEventListener('click',function(){
+	    console.log('four');
+	  },false); 
+		
+		// // 2.捕获则和冒泡相反，目标元素被触发后，会从目标元素的最顶层的祖先元素事件往下执行到目标元素为止。很明显执行顺序是不同的。
+		// // 点击one元素，输出one；
+	 //  one.addEventListener('click',function(){
+	 //    console.log('one');
+	 //  },true);
+
+		// // 点击two元素，输出one two ;
+	 //  two.addEventListener('click',function(){
+	 //    console.log('two');
+	 //  },true);
+
+		// // 点击three元素，输出 one two three；
+	 //  three.addEventListener('click',function(){
+	 //    console.log('three');
+	 //  },true);
+
+		// // 点击four元素，输出 one two three four；
+	 //  four.addEventListener('click',function(){
+	 //    console.log('four');
+	 //  },true);
+
+	 //  3.当一个元素绑定两个事件，一个冒泡，一个捕获.首先，无论是冒泡事件还是捕获事件，元素都会先执行捕获阶段。从上往下，如有捕获事件，则执行；一直向下到目标元素后，从目标元素开始向上执行冒泡元素，即第三个参数为true表示捕获阶段调用事件处理程序，如果是false则是冒泡阶段调用事件处理程序。(在向上执行过程中，已经执行过的捕获事件不再执行，只执行冒泡事件。)
+	  //  点击one元素，输出one；
+	  one.addEventListener('click',function(){
+	    console.log('one');
+	  },true);
+
+		// 点击two元素，输出two one;
+	  two.addEventListener('click',function(){
+	    console.log('two');
+	  },false);
+
+		// 点击three元素，输出 three two one；
+	  three.addEventListener('click',function(){
+	    console.log('three');
+	  },true);
+
+		// 点击four元素，输出 four three two one；
+	  four.addEventListener('click',function(){
+	    console.log('four');
+	  },false);
+	</script>
+</body>
+</html>

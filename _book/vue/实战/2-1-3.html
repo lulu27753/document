@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第二章 数据绑定和第一个Vue应用_插值表达式</title>
+</head>
+<body>
+    <div id="app">
+        <h1>现在时间是， {{ date }} </h1><br />
+        {{ link }}<br />
+        <span v-pre>{{ 这里的内容是不会被编译的 }}</span><br />
+        {{number / 10}}<br />
+        {{isOk ? '确定' : '取消'}}<br />
+        {{ text.split(',').reverse().join(',') }}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                date: new Date(),
+                link: '<a href="#">这是一个链接</a>',
+                number: 100,
+                isOk: false,
+                text:'123,456',
+            },
+        
+            // el挂载到实例上后调用，一般第一个业务逻辑会在这里开始
+            mounted: function () {
+                // 声明一个变量指向Vue实例this，保证作用域一致
+                var _this = this;
+                this.timer = setInterval(() => {
+                    // 修改数据date
+                    _this.date = new Date();
+                }, 1000);
+            },
+            // 实例销毁之前调用。主要解绑一些使用addEventListener监听的事件
+            // 在vue实例销毁之前，清除定时器
+            beforeDestroy: function () {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                }
+            },
+        })
+        console.log(app.name);
+        // console.log(app.data);
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第七章 组件_组件通信_非父子组件通信</title>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <component-a></component-a>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        // 创建一个名为bus的空Vue实例
+        // 巧妙而轻量地实现了任何组件的通信
+        // 包括父子、兄弟、跨级
+        var bus = new Vue();
+        Vue.component('component-a', {
+            template: '<button @click="handleEvent">传递事件</button>',
+            methods: {
+                handleEvent: function () {
+                    // 单击按钮时会通过bus把事件on-message发出去，
+                    // 此时app就会接收到来自bus的事件，
+                    // 进而在回调里完成自己的业务逻辑
+                    bus.$emit('on-message', '来自组件component-a的内容')
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: ''
+            },
+            mounted: function () {
+                var _this = this;
+                // 在实例初始化时，监听来自bus实例的事件on-message
+                bus.$on('on-message', function (msg) {
+                    _this.message = msg;
+                })
+            }
+        })
+    </script>
+</body>
+</html>

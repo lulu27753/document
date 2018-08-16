@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 编码技巧</title>
+    <style>
+        html {
+            font-size: 30px;
+        }
+        .btn-default{
+            padding: 0.375rem 1rem;
+            /* border: 1px solid #446d88; */
+            /* background: #58a linear-gradient(#77a0bb, #58a); */
+            
+            /* 把半透明的黑色或白色叠加在主色调上，即可产生主色调的亮色和暗色的变体 */
+            /* 推荐使用HSLA而不是RGBA来产生半透明的白色，因为它的字符长度更短 */
+            background: #58a linear-gradient(hsla(0, 0%, 100%, .2), transparent);
+            border-radius: 0.25rem;
+            color: white;
+            /* box-shadow: 0 -0.0625rem 0.0625rem #335166; */
+            box-shadow: 0 -0.0625rem 0.0625rem rgba(0,0,0,.5);
+            /* 当某些值相互依赖时，应该把它们的相互关系用代码表达出来 */
+            font-size: 1.25rem;
+            /* line-height: 30px; */
+            line-height: 1.5;
+        }
+        .btn-default.ok {
+            background: #6b0;
+        }
+        .btn-default.cancel {
+            background: #c00;
+        }  
+    </style>
+</head>
+<body>
+    <button class="btn-default">YES!</button>
+    <button class="btn-default ok">OK</button>
+    <button class="btn-default cancel">Cancel</button>
+</body>
+</html>

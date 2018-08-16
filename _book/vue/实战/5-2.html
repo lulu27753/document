@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>第五章 内置指令_条件渲染指令</title>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <p v-if="status === 1">当status为1时显示该行</p>
+        <p v-else-if="status === 2" >当status为2时显示该行</p>
+        <p v-else>否则显示该行</p>
+        <template v-if="status === 1">
+            <p>这是一段文本</p>
+            <p>这是一段文本</p>
+            <p>这是一段文本</p>
+        </template>
+        <template v-if="type === 'name'">
+            <label for="name">用户名：</label>
+            <input type="text" placeholder="输入用户名" key="name-input">
+        </template>
+        <template v-else>
+            <label for="name">邮箱：</label>
+            <input type="text" placeholder="输入邮箱" key="mail-input">
+        </template>
+        <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el: document.getElementById('app'),
+            el: '#app',// 指定页面中已存在的DOM元素来挂载Vue实例，可以是CSS选择器，也可以是HTMLElement
+            // 声明应用内所有需要绑定的数据
+            data: {
+                status: 1,
+                type: 'name',
+                },
+            computed: {
+                
+            },
+            methods: {
+                handleToggleClick: function () {
+                    this.type = this.type === 'name' ? 'mail' : 'name'
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>
