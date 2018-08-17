@@ -23,6 +23,13 @@
 	* [Webpack中publicPath详解](前端工程化/Webpack中publicPath详解.md)
 	* [webpack打包CSS](前端工程化/webpack打包CSS.md)
 	* [自动化部署](前端工程化/自动化部署.md)
+* 设计模式
+	* [设计原则](JS设计模式系统讲解和应用/设计原则.md)
+	* [面向对象](JS设计模式系统讲解和应用/面向对象.md)
+	* [工厂模式](JS设计模式系统讲解和应用/工厂模式.md)
+	* [单例模式](JS设计模式系统讲解和应用/单例模式.md)
+	* [适配器模式](JS设计模式系统讲解和应用/适配器模式.md)
+
 * 工具篇
 	* [git](tool/git.md)
 	* [gitbook](tool/gitbook.md)
@@ -60,6 +67,7 @@
 		* [http](其他基础/http/get_post.md)
 		* [mysql](/mysql.md)
 * 面试篇
+	* [JS基础知识](interview/JS基础知识.md)
 	* [ES6](interview/ES6.md)
 	* [原型](interview/原型.md)
 	* [异步](interview/异步.md)
