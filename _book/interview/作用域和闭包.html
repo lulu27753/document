@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>路由 · GitBook</title>
+        <title>作用域和闭包 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="运行环境.html" />
+    <link rel="next" href="异步.html" />
     
     
-    <link rel="prev" href="webpack.html" />
+    <link rel="prev" href="原型.html" />
     
 
     </head>
@@ -1035,7 +1035,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.1.2" data-path="作用域和闭包.html">
+        <li class="chapter active" data-level="1.8.1.2" data-path="作用域和闭包.html">
             
                 <a href="作用域和闭包.html">
             
@@ -1144,7 +1144,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.8.8" data-path="路由.html">
+        <li class="chapter " data-level="1.8.8" data-path="路由.html">
             
                 <a href="路由.html">
             
@@ -1314,7 +1314,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >路由</a>
+        <a href=".." >作用域和闭包</a>
     </h1>
 </div>
 
@@ -1331,10 +1331,204 @@
                                 
                                 <h2 id="&#x95EE;&#x9898;">&#x95EE;&#x9898;</h2>
 <ul>
-<li>&#x539F;&#x751F;&#x8DEF;&#x7531;&#x5B9E;&#x73B0;</li>
-<li>hash&#x8DEF;&#x7531;&#x540E;&#x7AEF;&#x4F1A;&#x6709;&#x611F;&#x89C9;&#x5417;&#xFF1F;</li>
+<li>&#x8BF4;&#x4E00;&#x4E0B;&#x5BF9;&#x53D8;&#x91CF;&#x63D0;&#x5347;&#x7684;&#x7406;&#x89E3;</li>
+<li>&#x8BF4;&#x660E;this&#x7684;&#x51E0;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;</li>
+<li>&#x7528;JS&#x521B;&#x5EFA;10&#x4E2A;<code>&lt;a&gt;</code>&#x6807;&#x7B7E;&#xFF0C;&#x70B9;&#x51FB;&#x7684;&#x65F6;&#x5019;&#x5F39;&#x51FA;&#x5BF9;&#x5E94;&#x7684;&#x5E8F;&#x53F7;</li>
+<li>&#x5982;&#x4F55;&#x7406;&#x89E3;&#x4F5C;&#x7528;&#x57DF;</li>
+<li>&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x95ED;&#x5305;&#x7684;&#x5E94;&#x7528;</li>
 </ul>
+<h2 id="&#x51FD;&#x6570;&#x58F0;&#x660E;&#x548C;&#x8868;&#x8FBE;&#x5F0F;">&#x51FD;&#x6570;&#x58F0;&#x660E;&#x548C;&#x8868;&#x8FBE;&#x5F0F;</h2>
+<pre><code>// var fn1 = undefined
+fn() // &#x4E0D;&#x4F1A;&#x62A5;&#x9519;
+function fn() {
+    // &#x58F0;&#x660E;
+}
+fn1() // &#x4F1A;&#x62A5;&#x9519;,&#x53D8;&#x91CF;&#x63D0;&#x5347;
+var fn = function() {
+    // &#x8868;&#x8FBE;&#x5F0F;
+}
+</code></pre><h2 id="&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;">&#x6267;&#x884C;&#x4E0A;&#x4E0B;&#x6587;</h2>
+<ul>
+<li>&#x8303;&#x56F4;&#xFF1A;&#x4E00;&#x6BB5;<code>&lt;script&gt;</code>&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x51FD;&#x6570;</li>
+<li>&#x5168;&#x5C40;&#xFF1A;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x3001;&#x51FD;&#x6570;&#x58F0;&#x660E; </li>
+<li>&#x51FD;&#x6570;&#xFF1A;&#x53D8;&#x91CF;&#x5B9A;&#x4E49;&#x3001;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x3001;this&#x3001;arguments</li>
+<li>PS: &#x6CE8;&#x610F;&#x51FD;&#x6570;&#x58F0;&#x660E;&#x548C;&#x51FD;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x533A;&#x522B;</li>
+</ul>
+<h2 id="this">this</h2>
+<blockquote>
+<p><code>this</code>&#x8981;&#x5728;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x624D;&#x80FD;&#x786E;&#x8BA4;&#x503C;&#xFF0C;&#x5B9A;&#x4E49;&#x65F6;&#x65E0;&#x6CD5;&#x786E;&#x8BA4;</p>
+</blockquote>
+<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> a = {
+    name: <span class="hljs-string">&apos;A&apos;</span>
+    fn: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.name)
+    }
+}
+a.fn() <span class="hljs-comment">// this === a</span>
+a.fn.call({name: <span class="hljs-string">&apos;B&apos;</span>}) <span class="hljs-comment">// this === {name: &apos;B&apos;}</span>
+<span class="hljs-keyword">var</span> fn1 = a.fn; fn1() <span class="hljs-comment">// this === window</span>
+</code></pre>
+<h3 id="this-&#x7684;&#x51E0;&#x79CD;&#x4E0D;&#x540C;&#x4F7F;&#x7528;&#x573A;&#x666F;">this &#x7684;&#x51E0;&#x79CD;&#x4E0D;&#x540C;&#x4F7F;&#x7528;&#x573A;&#x666F;</h3>
+<ul>
+<li>&#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6267;&#x884C;</li>
+<li>&#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x6267;&#x884C;</li>
+<li>&#x4F5C;&#x4E3A;&#x666E;&#x901A;&#x51FD;&#x6570;&#x6267;&#x884C;</li>
+<li>call | apply | bind</li>
+</ul>
+<pre><code>function Foo(name) {
+    this.name = name
+}
+var foo = new Foo(&apos;zhangsan&apos;)
 
+var obj = {
+    name: &apos;A&apos;,
+    printName: function() {
+        console.log(this.name)
+    }
+}
+obj.printName()
+
+function fn() {
+    console.log(this)
+}
+fn()
+
+function fn1(name, age) {
+    alert(name)
+    console.log(this)
+}
+fn1.apply({x:100}, [&apos;zhangsan&apos;, 20])
+
+var fn2 = function(name, age) {
+    alert(name)
+    console.log(this)
+}.bind({y: 200})
+fn2(&apos;zhangsan&apos;, 20)
+</code></pre><h2 id="&#x4F5C;&#x7528;&#x57DF;">&#x4F5C;&#x7528;&#x57DF;</h2>
+<ul>
+<li>&#x6CA1;&#x6709;&#x5757;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;</li>
+<li>&#x53EA;&#x6709;&#x51FD;&#x6570;&#x548C;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;</li>
+</ul>
+<pre><code>// &#x65E0;&#x5757;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;
+if (true) { var name = &apos;zhangsan&apos; }
+console.log(name)
+
+// &#x51FD;&#x6570;&#x548C;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;
+var a = 100
+function fn() {
+    var a = 200
+    console.log(&apos;fn&apos;, a)
+}
+console.log(&apos;global&apos;, a)
+fn()
+</code></pre><pre><code>// &#x4F5C;&#x7528;&#x57DF;&#x94FE;
+// &#x51FD;&#x6570;&#x7684;&#x7236;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;&#x662F;&#x51FD;&#x6570;&#x5B9A;&#x4E49;&#x65F6;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x4E0D;&#x662F;&#x51FD;&#x6570;&#x6267;&#x884C;&#x7684;&#x4F5C;&#x7528;&#x57DF;
+var a = 100
+function fn() {
+    var b = 200
+    // &#x5F53;&#x524D;&#x4F5C;&#x7528;&#x57DF;&#x6CA1;&#x6709;&#x5B9A;&#x4E49;&#x7684;&#x53D8;&#x91CF;&#xFF0C;&#x5373;&#x201C;&#x81EA;&#x7531;&#x53D8;&#x91CF;&#x201D;
+    console.log(a)
+    console.log(b)
+}
+fn()
+
+function F1() {
+    var b = 200
+    function F2() {
+        var c = 300
+        console.log(&apos;a&apos;, a) // a&#x662F;&#x81EA;&#x7531;&#x53D8;&#x91CF;
+        console.log(&apos;b&apos;, b) // b&#x662F;&#x81EA;&#x7531;&#x53D8;&#x91CF;
+        console.log(&apos;c&apos;, c)
+    }
+    F2()
+}
+F1()
+</code></pre><h2 id="&#x95ED;&#x5305;">&#x95ED;&#x5305;</h2>
+<pre><code>function F1() {
+     var a = 100
+
+    // &#x8FD4;&#x56DE;&#x4E86;&#x4E00;&#x4E2A;&#x51FD;&#x6570;(&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x503C;)
+    return function () {
+        console.log(a)
+    }
+}
+// f1 &#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x51FD;&#x6570;
+var f1 = F1()
+var a = 200
+f1() // 100
+
+function F2(fn) {
+    var a = 300
+    fn()
+}
+F2(f1) // 100
+</code></pre><h3 id="&#x95ED;&#x5305;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;">&#x95ED;&#x5305;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;</h3>
+<ul>
+<li>&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x8FD4;&#x56DE;&#x503C;</li>
+<li>&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x9012;</li>
+</ul>
+<h2 id="&#x89E3;&#x7B54;">&#x89E3;&#x7B54;</h2>
+<blockquote>
+<p>&#x8BF4;&#x4E00;&#x4E0B;&#x5BF9;&#x53D8;&#x91CF;&#x63D0;&#x5347;&#x7684;&#x7406;&#x89E3;</p>
+</blockquote>
+<pre><code>- &#x53D8;&#x91CF;&#x5B9A;&#x4E49;
+- &#x51FD;&#x6570;&#x58F0;&#x660E;(&#x6CE8;&#x610F;&#x548C;&#x51FD;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x533A;&#x522B;)
+</code></pre><blockquote>
+<p>&#x8BF4;&#x660E;this&#x7684;&#x51E0;&#x79CD;&#x4E0D;&#x540C;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;</p>
+</blockquote>
+<pre><code>- &#x4F5C;&#x4E3A;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6267;&#x884C;
+- &#x4F5C;&#x4E3A;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x6267;&#x884C;
+- &#x4F5C;&#x4E3A;&#x666E;&#x901A;&#x51FD;&#x6570;&#x6267;&#x884C;
+- call | apply | bind
+</code></pre><blockquote>
+<p>&#x7528;JS&#x521B;&#x5EFA;10&#x4E2A;<code>&lt;a&gt;</code>&#x6807;&#x7B7E;&#xFF0C;&#x70B9;&#x51FB;&#x7684;&#x65F6;&#x5019;&#x5F39;&#x51FA;&#x5BF9;&#x5E94;&#x7684;&#x5E8F;&#x53F7;</p>
+</blockquote>
+<pre><code>- &#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x4E0D;&#x7528;&#x8C03;&#x7528;&#xFF0C;&#x53EA;&#x8981;&#x5B9A;&#x4E49;&#x5B8C;&#x6210;&#xFF0C;&#x7ACB;&#x5373;&#x6267;&#x884C;&#x7684;&#x51FD;&#x6570;
+
+```javascript
+var i
+for (i = 0; i &lt; 10; i++) {
+    (function(i) {
+        var a = document.createElement(&apos;a&apos;)
+        a.innerHTML = i + &apos;&lt;br&gt;&apos;
+        a.addEventListener(&apos;click&apos;, function(e) {
+            e.preventDefault()
+            alert(i)
+        })
+        document.body.appendChild(a)
+    })(i)
+}
+```
+</code></pre><blockquote>
+<p>&#x5982;&#x4F55;&#x7406;&#x89E3;&#x4F5C;&#x7528;&#x57DF;</p>
+</blockquote>
+<pre><code>- &#x81EA;&#x7531;&#x53D8;&#x91CF;
+- &#x4F5C;&#x7528;&#x57DF;&#x94FE;&#xFF0C;&#x5373;&#x81EA;&#x7531;&#x53D8;&#x91CF;&#x7684;&#x67E5;&#x627E;
+- &#x95ED;&#x5305;&#x4F7F;&#x7528;&#x7684;&#x4E24;&#x4E2A;&#x573A;&#x666F;
+</code></pre><blockquote>
+<p>&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#x95ED;&#x5305;&#x7684;&#x5E94;&#x7528;</p>
+</blockquote>
+<pre><code>```
+// &#x95ED;&#x5305;&#x5B9E;&#x9645;&#x5E94;&#x7528;&#x4E2D;&#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5C01;&#x88C5;&#x53D8;&#x91CF;&#x3001;&#x6536;&#x655B;&#x6743;&#x9650;
+function isFirstLoad() {
+    var _list = []
+    return function(id) {
+        if (_list.indexOf(id) &gt;= 0) {
+            return false
+        } else {
+            _list.push(id)
+            return true
+        }
+    }
+}
+// &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+var firstLoad = isFirstLoad()
+firstLoad(10)
+firstLoad(10)
+firstLoad(20)
+
+```
+</code></pre>
                                 
                                 </section>
                             
@@ -1361,12 +1555,12 @@
 
             
                 
-                <a href="webpack.html" class="navigation navigation-prev " aria-label="Previous page: webpack">
+                <a href="原型.html" class="navigation navigation-prev " aria-label="Previous page: 原型">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="运行环境.html" class="navigation navigation-next " aria-label="Next page: 运行环境">
+                <a href="异步.html" class="navigation navigation-next " aria-label="Next page: 异步">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1377,7 +1571,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"路由","level":"1.8.8","depth":2,"next":{"title":"运行环境","level":"1.8.9","depth":2,"path":"interview/运行环境.md","ref":"interview/运行环境.md","articles":[]},"previous":{"title":"webpack","level":"1.8.7","depth":2,"path":"interview/webpack.md","ref":"interview/webpack.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/路由.md","mtime":"2018-08-15T09:26:12.758Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-18T04:48:50.402Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"作用域和闭包","level":"1.8.1.2","depth":3,"next":{"title":"异步","level":"1.8.1.3","depth":3,"path":"interview/异步.md","ref":"interview/异步.md","articles":[]},"previous":{"title":"原型","level":"1.8.1.1","depth":3,"path":"interview/原型.md","ref":"interview/原型.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/作用域和闭包.md","mtime":"2018-08-18T09:35:04.440Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-18T04:48:50.402Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
