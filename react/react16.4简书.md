@@ -99,6 +99,10 @@ License Key: 48891cf209c6d32bf4
 
 [yapi: YApi 是一个可本地部署的、打通前后端及QA的、可视化的接口管理平台](https://github.com/ymfe/yapi)
 
+### easy mock
+
+[Easy Mock](https://www.easy-mock.com/)
+
 ## React 16
 
 * 占位符

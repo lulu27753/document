@@ -1,6 +1,38 @@
 # Summary
 
 * [项目简介](readme.md)
+* 面试篇
+	* [JS基础知识](interview/JS基础知识.md)
+		* [原型](interview/原型.md)
+		* [作用域和闭包](interview/作用域和闭包.md)
+		* [异步](interview/异步.md)
+	* [JsWebAPI](interview/JsWebAPI.md)
+	* [ES6](interview/ES6.md)
+	* [虚拟DOM](interview/virtual_dom.md)
+	* [组件化](interview/组件化.md)
+	* [hybrid](interview/hybrid.md)
+	* [webpack](interview/webpack.md)
+	* [路由](interview/路由.md)
+	* [运行环境](interview/运行环境.md)
+	* [算法题](interview/算法.md)
+	* [pollyfill](interview/pollyfill.md)
+	* [上线和回滚](interview/上线和回滚.md)
+* 工具篇
+	* IDE
+		* [sublime](tool/编辑器/sublime.md)
+		* [vscode](tool/编辑器/vscode.md)
+		* [EditorConfig](tool/编辑器/EditorConfig.md)
+	* 版本管理
+		* [git](tool/git.md)
+	* 文档工具
+		* [gitbook](tool/gitbook.md)
+		* [dash](tool/dash.md)
+	* 系统
+		* [shell](tool/shell.md)
+		* [命令行工具](tool/命令行工具.md)
+		* [yeoman](tool/yeoman.md)
+		* [网盘搜索引擎](tool/网盘搜索引擎.md)
+		* [如何优雅的高效使用MAC OSX系统](tool/how-to-use-mac-efficiently.md)	
 * 框架篇
 	* React
 		* [React](react/react.md)
@@ -29,28 +61,15 @@
 	* [工厂模式](JS设计模式系统讲解和应用/工厂模式.md)
 	* [单例模式](JS设计模式系统讲解和应用/单例模式.md)
 	* [适配器模式](JS设计模式系统讲解和应用/适配器模式.md)
-
-* 工具篇
-	* [git](tool/git.md)
-	* [gitbook](tool/gitbook.md)
-	* [sublime](tool/编辑器/sublime.md)
-	* [vscode](tool/编辑器/vscode.md)
-	* [EditorConfig](tool/编辑器/EditorConfig.md)
-	* [shell](tool/shell.md)
-	* [命令行工具](tool/命令行工具.md)
-	* [yeoman](tool/yeoman.md)
-	* [网盘搜索引擎](tool/网盘搜索引擎.md)
-	* [如何优雅的高效使用MAC OSX系统](tool/how-to-use-mac-efficiently.md)
-	* [dash](tool/dash.md)
 * 基础篇
 	* 样式篇
 		* [居中](css/居中.md)
 		* [布局](css/布局.md)
-		* [git](css/居中.md)
+		* [css_grid](css/CSS_grid.md)
+		* [flex](css/布局.md)
 	* JS基础
 		* [函数式编程和面向对象编程](其他基础/函数式编程和面向对象编程.md)
 		* [this](js/this.md)
-		* [promise](js/promise.md)
 		* [日期处理](js/日期处理.md)
 		* [跨域](js/跨域.md)
 		* [闭包](js/闭包.md)
@@ -66,19 +85,6 @@
 		* [jwt](其他基础/jwt.md)
 		* [http](其他基础/http/get_post.md)
 		* [mysql](/mysql.md)
-* 面试篇
-	* [JS基础知识](interview/JS基础知识.md)
-		* [原型](interview/原型.md)
-		* [作用域和闭包](interview/作用域和闭包.md)
-		* [异步](interview/异步.md)
-	* [JsWebAPI](interview/JsWebAPI.md)
-	* [ES6](interview/ES6.md)
-	* [虚拟DOM](interview/virtual_dom.md)
-	* [组件化](interview/组件化.md)
-	* [hybrid](interview/hybrid.md)
-	* [webpack](interview/webpack.md)
-	* [路由](interview/路由.md)
-	* [运行环境](interview/运行环境.md)
 * 产品篇
 	* [开源](产品/index.md)
 	* 
@@ -86,7 +92,9 @@
 	* [开源](产品/index.md)
 * 其他
 	* [埋点](/埋点操作文档.md)
+	* [异常捕获与上报](/前端异常捕获与上报.md)
 	* [兼容性](/兼容性/IE.md)
+	* [pwa](/pwa.md)
 
 
 

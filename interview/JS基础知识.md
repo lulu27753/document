@@ -130,11 +130,6 @@ console.log(!!a)
 	JSON.parse('{"a":10, "b":20}')
 	```
 
-> window.onload 和 DOMContentLoaded 的区别
-
-> 用JS创建10个`<a>`标签，点击的时候弹出对应的序号
-	
-> 简述如何实现一个模块加载器，实现类似require.js的基本功能
 
 
 

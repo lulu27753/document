@@ -258,7 +258,10 @@ git diff <source_branch> <target_branch> //对比差异
 git add <filename> //修改完冲突，需要add以标记合并成功
 ```
 
-## 参考资料
+## 资源
+
+[CODING | 代码托管 项目管理 WebIDE 企业服务](https://coding.net/)
+[码云 Gitee — 开源中国 Git 代码托管平台](https://gitee.com/)
 
 [Git Book](https://git-scm.com/book/zh/v2)<br />
 [Git Flight Rule](https://github.com/k88hudson/git-flight-rules)

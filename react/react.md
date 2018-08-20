@@ -43,6 +43,7 @@
 
 [shipshapecode/shepherd: Guide your users through a tour of your app](https://github.com/shipshapecode/shepherd)
 
+[react-move: React Move 🌀 Beautiful, data-driven animations for React](https://github.com/react-tools/react-move)
 ## 学习规划
 
 [react-developer-roadmap：React开发人员路线图](https://github.com/adam-golab/react-developer-roadmap)
