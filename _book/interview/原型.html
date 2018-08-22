@@ -1624,35 +1624,37 @@ Dog.prototype = new Animal()
 var hashiqi = new Dog()
 hashiqi.eat()
 ```
+</code></pre><ul>
+<li>&#x521B;&#x5EFA;&#x7236;&#x7C7B;&#x5B9E;&#x4F8B;</li>
+<li>&#x6539;&#x53D8;&#x5B9E;&#x4F8B;&#x539F;&#x5148;&#x7684; <code>_proto__</code> &#x8F6C;&#x800C;&#x8FDE;&#x63A5;&#x5230;&#x5B50;&#x7C7B;&#x7684; <code>prototype</code></li>
+<li><p>&#x5B50;&#x7C7B;&#x7684; <code>prototype</code> &#x7684; <code>__proto__</code> &#x6539;&#x4E3A;&#x7236;&#x7C7B;&#x7684; <code>prototype</code></p>
+<pre><code>  // &#x5C01;&#x88C5;DOM&#x67E5;&#x8BE2;&#x7684;&#x4F8B;&#x5B50;
+  function Elem(id) {
+      this.elem = document.getElementById(id)
+  }
+  Elem.prototype.html = function(val) {
+      var elem = this.elem
+      if (val) {
+          elem.innerHTML = val
+          return this // &#x94FE;&#x5F0F;&#x64CD;&#x4F5C;
+      } else {
+          return elem.innerHTML
+      }
+  }
+  Elem.prototype.on = function(type, fn) {
+      var elem = this.elem
+      elem.addEventListener(type, fn)
+      return this
+  }.html(&apos;&lt;p&gt;javascript&lt;/p&gt;&apos;)
 
-
-```
-// &#x5C01;&#x88C5;DOM&#x67E5;&#x8BE2;&#x7684;&#x4F8B;&#x5B50;
-function Elem(id) {
-    this.elem = document.getElementById(id)
-}
-Elem.prototype.html = function(val) {
-    var elem = this.elem
-    if (val) {
-        elem.innerHTML = val
-        return this // &#x94FE;&#x5F0F;&#x64CD;&#x4F5C;
-    } else {
-        return elem.innerHTML
-    }
-}
-Elem.prototype.on = function(type, fn) {
-    var elem = this.elem
-    elem.addEventListener(type, fn)
-    return this
-}.html(&apos;&lt;p&gt;javascript&lt;/p&gt;&apos;)
-
-// &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
-var div1 = new Elem(&apos;div1&apos;)
-div1.html(&apos;&lt;p&gt;hello world&lt;/p&gt;&apos;).on(&apos;click&apos;, function() {
-    alert(&apos;clicked&apos;)
-})
-```
-</code></pre><blockquote>
+  // &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+  var div1 = new Elem(&apos;div1&apos;)
+  div1.html(&apos;&lt;p&gt;hello world&lt;/p&gt;&apos;).on(&apos;click&apos;, function() {
+      alert(&apos;clicked&apos;)
+  })
+</code></pre></li>
+</ul>
+<blockquote>
 <p>&#x63CF;&#x8FF0;new&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x8FC7;&#x7A0B;</p>
 </blockquote>
 <pre><code>- &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7A7A;&#x5BF9;&#x8C61;
@@ -1706,7 +1708,7 @@ div1.html(&apos;&lt;p&gt;hello world&lt;/p&gt;&apos;).on(&apos;click&apos;, func
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"原型","level":"1.2.1.1","depth":3,"next":{"title":"作用域和闭包","level":"1.2.1.2","depth":3,"path":"interview/作用域和闭包.md","ref":"interview/作用域和闭包.md","articles":[]},"previous":{"title":"JS基础知识","level":"1.2.1","depth":2,"path":"interview/JS基础知识.md","ref":"interview/JS基础知识.md","articles":[{"title":"原型","level":"1.2.1.1","depth":3,"path":"interview/原型.md","ref":"interview/原型.md","articles":[]},{"title":"作用域和闭包","level":"1.2.1.2","depth":3,"path":"interview/作用域和闭包.md","ref":"interview/作用域和闭包.md","articles":[]},{"title":"异步","level":"1.2.1.3","depth":3,"path":"interview/异步.md","ref":"interview/异步.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/原型.md","mtime":"2018-08-18T06:45:39.906Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-20T01:40:30.387Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"原型","level":"1.2.1.1","depth":3,"next":{"title":"作用域和闭包","level":"1.2.1.2","depth":3,"path":"interview/作用域和闭包.md","ref":"interview/作用域和闭包.md","articles":[]},"previous":{"title":"JS基础知识","level":"1.2.1","depth":2,"path":"interview/JS基础知识.md","ref":"interview/JS基础知识.md","articles":[{"title":"原型","level":"1.2.1.1","depth":3,"path":"interview/原型.md","ref":"interview/原型.md","articles":[]},{"title":"作用域和闭包","level":"1.2.1.2","depth":3,"path":"interview/作用域和闭包.md","ref":"interview/作用域和闭包.md","articles":[]},{"title":"异步","level":"1.2.1.3","depth":3,"path":"interview/异步.md","ref":"interview/异步.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/原型.md","mtime":"2018-08-21T05:49:40.186Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-21T06:39:09.687Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1714,10 +1716,6 @@ div1.html(&apos;&lt;p&gt;hello world&lt;/p&gt;&apos;).on(&apos;click&apos;, func
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
-        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

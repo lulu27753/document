@@ -47,7 +47,25 @@ typeof [] // object
 typeof null // object 注意⚠️
 ```
 
+```
+Object.prototype.toString.call(undefined) // "[object Undefined]"
+Object.prototype.toString.call('123') // "[object String]"
+Object.prototype.toString.call(123) // "[object Number]"
+Object.prototype.toString.call(true) // "[object Boolean]"
+
+Object.prototype.toString.call(console.log) // "[object Function]"
+Object.prototype.toString.call({}) // "[object Object]"
+Object.prototype.toString.call([]) // "[object Array]"
+Object.prototype.toString.call(null) // "[object Null]"
+
+```
+
+```
+void 0 === undefined // true
+```
+
 ### 强制类型转换
+
 
 ##### 字符串拼接
 
@@ -88,6 +106,42 @@ console.log(!window.abc) // true
 // 判断一个变量会被当作 true 还是 false
 var a = 100
 console.log(!!a)
+```
+
+## 深浅拷贝
+
+### 浅拷贝
+
+- 只解决了第一层的问题
+- Object.assign()
+- 展开运算符（…）
+
+```
+let a = {
+    age: 1
+}
+let b = {...a}
+a.age = 2
+console.log(b.age) // 1
+```
+
+### 深拷贝
+
+- JSON.parse(JSON.stringify(object))
+	- 会忽略 undefined
+	- 不能序列化函数
+	- 不能解决循环引用的对象
+
+```
+let a = {
+    age: 1,
+    jobs: {
+        first: 'FE'
+    }
+}
+let b = JSON.parse(JSON.stringify(a))
+a.jobs.first = 'native'
+console.log(b.jobs.first) // FE
 ```
 
 ## 解答
