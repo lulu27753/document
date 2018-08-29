@@ -290,7 +290,9 @@ webpack visualize
 项目是否真的有必要按需加载吗
 项目庞大时可以考虑
 
+## 资源
 
+[Front-End-Performance-Checklist](https://github.com/thedaviddias/Front-End-Performance-Checklist)
 
 
 

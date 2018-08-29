@@ -84,8 +84,9 @@
 
 ### 环境
 
-安装node && [Ngrok](https://blog.csdn.net/tomcat_2014/article/details/68944066)
-[Sunny-Ngrok内网转发](https://www.ngrok.cc/)
+* 安装node && [Ngrok](https://blog.csdn.net/tomcat_2014/article/details/68944066)
+
+* [Sunny-Ngrok内网转发](https://www.ngrok.cc/)
 
 
 ## tool
@@ -94,12 +95,13 @@
 
 ## 资源
 
-[PWA-Book-CN: 第一本 PWA 中文书](https://github.com/SangKa/PWA-Book-CN)
+* [PWA-Book-CN: 第一本 PWA 中文书](https://github.com/SangKa/PWA-Book-CN)
 
-[sw-toolbox: A collection of service worker tools for offlining runtime requests](https://github.com/GoogleChromeLabs/sw-toolbox)
+* [sw-toolbox: A collection of service worker tools for offlining runtime requests](https://github.com/GoogleChromeLabs/sw-toolbox)
 
+* [PWA 中文文档](http://sangka-z.com/PWA-Book-CN/)
 
-
+* [LAVAS : 基于 Vue.js 的 PWA 解决方案](https://lavas.baidu.com/)
 
 
 

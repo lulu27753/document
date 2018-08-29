@@ -466,6 +466,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.3.3" data-path="../tool/ydoc.html">
+            
+                <a href="../tool/ydoc.html">
+            
+                    
+                    ydoc
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -942,6 +955,32 @@
             
                     
                     适配器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../JS设计模式系统讲解和应用/代理模式.html">
+            
+                <a href="../JS设计模式系统讲解和应用/代理模式.html">
+            
+                    
+                    代理模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../JS设计模式系统讲解和应用/外观模式.html">
+            
+                <a href="../JS设计模式系统讲解和应用/外观模式.html">
+            
+                    
+                    外观模式
             
                 </a>
             
@@ -1478,6 +1517,8 @@
 <p>&#x6A21;&#x62DF;&#x5B9E;&#x73B0;slice</p>
 <p>&#x5B9E;&#x73B0;&#x9632;&#x6296;&#x52A8;&#x51FD;&#x6570;</p>
 <p>&#x5B9E;&#x73B0;&#x8282;&#x6D41;&#x51FD;&#x6570;</p>
+<p>&#x6A21;&#x62DF;&#x5B9E;&#x73B0;Promise.all</p>
+<p>Object.entries</p>
 </blockquote>
 <h2 id="&#x89E3;&#x7B54;">&#x89E3;&#x7B54;</h2>
 <h4 id="&#x6A21;&#x62DF;&#x5B9E;&#x73B0;call--apply--bind">&#x6A21;&#x62DF;&#x5B9E;&#x73B0;call | apply | bind</h4>
@@ -1694,6 +1735,61 @@ _.throttle = function(func, wait, options) {
       return result;
     };
   };
+</code></pre><h4 id="&#x6A21;&#x62DF;&#x5B9E;&#x73B0;promiseall">&#x6A21;&#x62DF;&#x5B9E;&#x73B0;Promise.all</h4>
+<ul>
+<li>&#x662F; Promise &#x5BF9;&#x8C61;&#x4E0A;&#x7684;&#x9759;&#x6001;&#x65B9;&#x6CD5;</li>
+<li>&#x53C2;&#x6570;&#xFF1A;&#x4E00;&#x4E2A; promise &#x5BF9;&#x8C61;&#x7684;&#x6570;&#x7EC4; &#x6216; &#x5177;&#x6709; Iterator &#x63A5;&#x53E3;&#x7684;&#x5BF9;&#x8C61;</li>
+<li>&#x5982;&#x679C;&#x5143;&#x7D20;&#x4E0D;&#x662F; Promise &#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x4F7F;&#x7528; Promise.resolve &#x8F6C;&#x6210; Promise &#x5BF9;&#x8C61;</li>
+<li>&#x5F53;&#x8FD9;&#x4E2A;&#x6570;&#x7EC4;&#x91CC;&#x7684;&#x6240;&#x6709; promise &#x5BF9;&#x8C61;&#x5168;&#x90E8;&#x53D8;&#x4E3A;resolve&#x6216; &#x6709; reject &#x72B6;&#x6001;&#x51FA;&#x73B0;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B83;&#x624D;&#x4F1A;&#x53BB;&#x8C03;&#x7528; .then &#x65B9;&#x6CD5;</li>
+<li>&#x5B83;&#x4EEC;&#x662F;&#x5E76;&#x53D1;&#x6267;&#x884C;&#x7684;</li>
+<li>&#x5982;&#x679C;&#x5168;&#x90E8;&#x6210;&#x529F;&#xFF0C;&#x72B6;&#x6001;&#x53D8;&#x4E3A; resolved&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x5C06;&#x7EC4;&#x6210;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4F20;&#x7ED9;&#x56DE;&#x8C03;</li>
+<li>promise &#x6570;&#x7EC4;&#x4E2D;&#x4EFB;&#x4F55;&#x4E00;&#x4E2A; promise &#x4E3A; reject &#x7684;&#x8BDD;&#xFF0C;
+&#x5219;&#x6574;&#x4E2A; Promise.all &#x8C03;&#x7528;&#x4F1A;&#x7ACB;&#x5373;&#x7EC8;&#x6B62;&#xFF0C;
+&#x5E76;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A; reject &#x7684;&#x65B0;&#x7684; promise &#x5BF9;&#x8C61;</li>
+</ul>
+<pre><code>// &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+var p1 = Promise.resolve(1),
+    p2 = Promise.resolve(2),
+    p3 = Promise.resolve(3);
+Promise.all([p1, p2, p3]).then(function (results) {
+    console.log(results);  // [1, 2, 3]
+});
+
+
+
+var p1 = Promise.resolve(1),
+    p2 = Promise.reject(2),
+    p3 = Promise.resolve(3);
+Promise.all([p1, p2, p3]).then(function (results) {
+    //then&#x65B9;&#x6CD5;&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;
+    console.log(results);
+}).catch(function (e){
+    //catch&#x65B9;&#x6CD5;&#x5C06;&#x4F1A;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x4E3A;&#xFF1A;2
+    console.log(2);
+});
+</code></pre><pre><code>function promiseAll (promises) {
+    return new Promise((resolve, reject) =&gt; {
+        if (!isArray(promises)) {
+            throw new TypeError(&apos;&#x53C2;&#x6570;&#x5FC5;&#x987B;&#x662F;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&apos;)
+            return
+        }
+        var resolvedCounter = 0
+
+    })
+
+}
+</code></pre><h4 id="&#x6A21;&#x62DF;&#x5B9E;&#x73B0;objectentries">&#x6A21;&#x62DF;&#x5B9E;&#x73B0;Object.entries</h4>
+<ul>
+<li>&#x8FD4;&#x56DE;&#x6210;&#x5458;&#x662F;&#x53C2;&#x6570;&#x5BF9;&#x8C61;&#x81EA;&#x8EAB;&#x7684;&#xFF08;&#x4E0D;&#x542B;&#x7EE7;&#x627F;&#x7684;&#xFF09;&#x6240;&#x6709;&#x53EF;&#x904D;&#x5386;&#xFF08; enumerable &#xFF09;&#x5C5E;&#x6027;&#x7684;[&#x952E;&#x3001;&#x503C;]</li>
+<li>&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;</li>
+</ul>
+<pre><code>function myEntries(obj) {
+    let arr = []
+    for (let key of Object.keys(obj)) {
+            arr.push(key, obj[key])
+    }
+    return arr
+}
 </code></pre>
                                 
                                 </section>
@@ -1737,7 +1833,7 @@ _.throttle = function(func, wait, options) {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"pollyfill","level":"1.2.11","depth":2,"next":{"title":"上线和回滚","level":"1.2.12","depth":2,"path":"interview/上线和回滚.md","ref":"interview/上线和回滚.md","articles":[]},"previous":{"title":"算法题","level":"1.2.10","depth":2,"path":"interview/算法.md","ref":"interview/算法.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/pollyfill.md","mtime":"2018-08-21T06:31:58.525Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-21T06:39:09.687Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"pollyfill","level":"1.2.11","depth":2,"next":{"title":"上线和回滚","level":"1.2.12","depth":2,"path":"interview/上线和回滚.md","ref":"interview/上线和回滚.md","articles":[]},"previous":{"title":"算法题","level":"1.2.10","depth":2,"path":"interview/算法.md","ref":"interview/算法.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/pollyfill.md","mtime":"2018-08-27T12:38:34.982Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-28T09:24:02.003Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1745,6 +1841,10 @@ _.throttle = function(func, wait, options) {
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

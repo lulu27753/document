@@ -466,6 +466,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.3.3" data-path="../tool/ydoc.html">
+            
+                <a href="../tool/ydoc.html">
+            
+                    
+                    ydoc
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -942,6 +955,32 @@
             
                     
                     适配器模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../JS设计模式系统讲解和应用/代理模式.html">
+            
+                <a href="../JS设计模式系统讲解和应用/代理模式.html">
+            
+                    
+                    代理模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../JS设计模式系统讲解和应用/外观模式.html">
+            
+                <a href="../JS设计模式系统讲解和应用/外观模式.html">
+            
+                    
+                    外观模式
             
                 </a>
             
@@ -1524,6 +1563,101 @@
     <span class="hljs-keyword">return</span> fn;
     }
 </code></pre>
+<blockquote>
+<p>getProperty({a: 1, b: 2}) // [[&apos;a&apos;, 1], [&apos;b&apos;, 2]]  </p>
+</blockquote>
+<pre><code>// &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+function O (a, b) {
+    this.a = a
+    this.b = b
+}
+
+O.prototype = {c: 3}
+o = new O(1, 2)
+
+// getProperty(o)
+
+// getProperty(null)
+</code></pre><pre><code>function getProperty(obj) {
+    if (typeof obj !== &apos;Object&apos;) {
+        throw new Error(&apos;type Error&apos;)
+        return
+    }
+    return Object.keys(obj).map((item) =&gt; {
+        const arr = []
+        arr.push(item, obj[item])
+        return arr
+    })
+}
+</code></pre><pre><code>function getProperty(obj) {
+    if (typeof obj !== &apos;Object&apos;) {
+        throw new Error(&apos;Type Error&apos;)
+        return
+    }
+    const arr = []
+    for (let item in obj) {
+        arr.push(item, obj[item])
+    }
+    return arr
+}
+</code></pre><pre><code>function getProperty(obj) {
+    return Object.entries(obj)
+}
+</code></pre><blockquote>
+<p>duplicate&#xFF08;[1,2,3,2,1]) // [1,2,3]</p>
+</blockquote>
+<pre><code>function duplicate(arr) {
+    var newArr = []
+  arr.map((item) =&gt; {
+        if (newArr.indexOf(item) === -1) {
+            newArr.push(item)
+        }
+  })
+  return newArr
+}
+duplicate([1,2,3,2,1])
+</code></pre><blockquote>
+<p>promise.all()</p>
+<p>&#x8BB0;&#x5FC6;&#x5316;&#x6590;&#x6CE2;&#x90A3;&#x5951;&#x51FD;&#x6570;: f(n) = f(n - 1) + f(n -2),
+&#x63A5;&#x53D7; n &#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x83B7;&#x53D6;&#x6570;&#x5217;&#x4E2D;&#x7B2C; n &#x4E2A;&#x6570;</p>
+</blockquote>
+<pre><code>const fibonacci = ((memo = [0, 1]) =&gt; {
+  const fib = (n) =&gt; {
+    let result = memo[n]
+    if (typeof result !== &quot;number&quot;) {
+      result = fib(n - 1) + fib(n - 2)
+      memo[n] = result
+    }
+    return result
+  }
+  return fib
+})()
+</code></pre><blockquote>
+<p>&#x5728; String &#x5BF9;&#x8C61;&#x4E0A;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A; repeatify &#x51FD;&#x6570;&#x3002;
+&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x53C2;&#x6570;&#xFF0C;&#x6765;&#x660E;&#x786E;&#x5B57;&#x7B26;&#x4E32;&#x9700;&#x8981;&#x91CD;&#x590D;&#x51E0;&#x6B21;&#x3002;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x8981;&#x6C42;&#x5B57;&#x7B26;&#x4E32;&#x91CD;&#x590D;&#x6307;&#x5B9A;&#x7684;&#x6B21;&#x6570;</p>
+</blockquote>
+<pre><code>// &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+ console.log(&apos;hello&apos;.repeatify(3)); // hellohellohello
+</code></pre><pre><code>String.prototype.repeatify =  String.prototype.repeatify ||  function(times)  {
+ var str =  &apos;&apos;;
+
+ for  (var i =  0; i &lt; times; i++)  {
+ str +=  this;
+ }
+
+  return str;
+ };
+</code></pre><blockquote>
+<p>&#x540C;&#x5B57;&#x6BCD;&#x5F02;&#x5E8F;</p>
+</blockquote>
+<pre><code>// &#x6D4B;&#x8BD5;&#x4EE3;&#x7801;
+isAnagram(&quot;anagram&quot;, &quot;nagaram&quot;) // =&gt; return true.
+isAnagram(&quot;rat&quot;, &quot;car&quot;) // =&gt; return false.
+</code></pre><pre><code>const isAnagram = (str1, str2) =&gt; /* TODO */ {
+ return !str1.split(&apos;&apos;).sort().join(&apos;&apos;).replace(str2.split(&apos;&apos;).sort().join(&apos;&apos;), &apos;&apos;);
+}
+</code></pre><blockquote>
+</blockquote>
 
                                 
                                 </section>
@@ -1567,7 +1701,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"算法题","level":"1.2.10","depth":2,"next":{"title":"pollyfill","level":"1.2.11","depth":2,"path":"interview/pollyfill.md","ref":"interview/pollyfill.md","articles":[]},"previous":{"title":"运行环境","level":"1.2.9","depth":2,"path":"interview/运行环境.md","ref":"interview/运行环境.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/算法.md","mtime":"2018-08-21T06:34:04.628Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-21T06:39:09.687Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"算法题","level":"1.2.10","depth":2,"next":{"title":"pollyfill","level":"1.2.11","depth":2,"path":"interview/pollyfill.md","ref":"interview/pollyfill.md","articles":[]},"previous":{"title":"运行环境","level":"1.2.9","depth":2,"path":"interview/运行环境.md","ref":"interview/运行环境.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"interview/算法.md","mtime":"2018-08-28T14:45:06.176Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-08-28T09:24:02.003Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1575,6 +1709,10 @@
         
     <script src="../gitbook/gitbook.js"></script>
     <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
     
         
         <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>

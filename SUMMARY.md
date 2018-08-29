@@ -17,6 +17,7 @@
 	* [算法题](interview/算法.md)
 	* [pollyfill](interview/pollyfill.md)
 	* [上线和回滚](interview/上线和回滚.md)
+	* [其他资源](interview/index.md)
 * 工具篇
 	* IDE
 		* [sublime](tool/编辑器/sublime.md)
@@ -27,12 +28,16 @@
 	* 文档工具
 		* [gitbook](tool/gitbook.md)
 		* [dash](tool/dash.md)
+		* [ydoc](tool/ydoc.md)
 	* 系统
 		* [shell](tool/shell.md)
 		* [命令行工具](tool/命令行工具.md)
 		* [yeoman](tool/yeoman.md)
 		* [网盘搜索引擎](tool/网盘搜索引擎.md)
 		* [如何优雅的高效使用MAC OSX系统](tool/how-to-use-mac-efficiently.md)	
+		* [科学上网](tool/科学上网.md)
+	* 浏览器
+		* [chrome](tool/chrome.md)
 * 框架篇
 	* React
 		* [React](react/react.md)
@@ -61,6 +66,9 @@
 	* [工厂模式](JS设计模式系统讲解和应用/工厂模式.md)
 	* [单例模式](JS设计模式系统讲解和应用/单例模式.md)
 	* [适配器模式](JS设计模式系统讲解和应用/适配器模式.md)
+	* [代理模式](JS设计模式系统讲解和应用/代理模式.md)
+	* [观察者模式](JS设计模式系统讲解和应用/观察者模式.md)
+	* [外观模式](JS设计模式系统讲解和应用/外观模式.md)
 * 基础篇
 	* 样式篇
 		* [居中](css/居中.md)
@@ -87,7 +95,6 @@
 		* [mysql](/mysql.md)
 * 产品篇
 	* [开源](产品/index.md)
-	* 
 * 架构篇
 	* [开源](产品/index.md)
 * 其他
@@ -95,6 +102,11 @@
 	* [异常捕获与上报](/前端异常捕获与上报.md)
 	* [兼容性](/兼容性/IE.md)
 	* [pwa](/pwa.md)
+* Link
+	* [博客](/tool/博客.md)
+	* [源码](/origin-code/index.md)
+	* [awesomes](/origin-code/index.md)
+
 
 
 

@@ -29,6 +29,8 @@
 
 [Vuesax](https://lusaxweb.github.io/vuesax/vuesax/)
 
+[vant](https://github.com/youzan/vant)
+
 ## vue-cli
 
 ```bash
@@ -403,4 +405,7 @@ Vue.use(MyPlugin, {
 
 ## 资源
 
+[Vue.js官网](https://cn.vuejs.org/v2/guide/)
+
 [这可能是vue-cli最全的解析了](https://juejin.im/post/5b2872516fb9a00e8626e34f?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com)
+
