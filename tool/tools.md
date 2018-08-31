@@ -38,9 +38,7 @@
 * [showdoc : 文档编写工具](https://github.com/star7th/showdoc)
 
 * [标你妹啊 : 一款自动化设计标注工具](http://www.biaonimeia.com)
-
-* [Framer : 全功能设计工具](https://www.framercn.com/)
-
+ 
 * [Kitchen : 一款为设计者提升工作效率的 Sketch 工具集](https://kitchen.alipay.com/)
 
 * [gka : 一款简单的、高效的帧动画生成工具，图片处理工具](https://github.com/gkajs/gka)
@@ -49,15 +47,34 @@
 
 * [processon : 免费在线作图](https://www.processon.com/)
 
-## 其他
+* [RunJS - 在线编辑、展示、分享、交流你的 JavaScript 代码](https://runjs.cn/)
 
-[window超速网盘]http://pandownload.com/
+* [codepen | 在线编辑器](https://codepen.io/pen/)
+
+* [Babel](https://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015%2Creact%2Cstage-2&targets=&browsers=&builtIns=false&debug=false&code_lz=Q)
+
+* [CodeSandbox](https://codesandbox.io/s/2zpjporp4p)
+
+* [Traceur](https://google.github.io/traceur-compiler/demo/repl.html#)
+
+* [yapi: YApi 是一个可本地部署的、打通前后端及QA的、可视化的接口管理平台](https://github.com/ymfe/yapi)
+
+* [CODING | 代码托管](https://coding.net/)
+
+## 调试工具
+
+[Tencent/vConsole](https://github.com/Tencent/vConsole)
+
 
 ## 设计
 
-[Framer | 可以直接写React](https://framer.com/download/)
+- [Framer | 可以直接写React](https://framer.com/download/)
+
+- [蓝湖 - 高效的产品设计协作平台](https://lanhuapp.com/?https%3A%2F%2Fwww.baidu.com%2Flink%3Furl=ofDzj5JPV7ZluTjbJmn7rhRCmFTJuiIli4-jVODYgkzkECjX3WmgEOGre94zqsJg&wd=&eqid=a57ec99d0000ca19000000045b865235)
 
 ## macPro APP
+
+* [Charles官网](https://www.charlesproxy.com/)
 
 * [VNC Server]
 
@@ -90,6 +107,16 @@
 * [Dash](https://kapeli.com/dash)
 
 * [Anki](https://apps.ankiweb.net/)
+
+* [Seafile](https://www.seafile.com/en/download/)
+
+## loader
+
+[code-metrics-loader: 降低代码复杂度](https://github.com/hellosean1025/code-metrics-loader)
+
+## 其他
+
+[window超速网盘]http://pandownload.com/
 
 ## 参考教程
 

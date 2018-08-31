@@ -26,6 +26,8 @@
 
 [oreillymedia | 官网](http://oreillymedia.github.io/)
 
+[rsuite](https://github.com/rsuite/rsuite)
+
 ## Boilerplate
 
 [react-webpack-boilerplate](https://github.com/amostap/react-webpack-boilerplate)
@@ -39,11 +41,16 @@
 
 [noform - 表单框架](https://alibaba.github.io/noform/#/docs?md=basic/core)
 
+[react-code-view | markdown code 即时编辑](https://github.com/simonguo/react-code-view)
+
+[schema-typed | 校验](https://github.com/rsuite/schema-typed)
+
 [React Joyride | 首次登录新手引导提示 |Create walkthroughs, tours and tooltips for your apps](http://gilbarbara.github.io/react-joyride/)
 
 [shipshapecode/shepherd: Guide your users through a tour of your app](https://github.com/shipshapecode/shepherd)
 
 [react-move: React Move 🌀 Beautiful, data-driven animations for React](https://github.com/react-tools/react-move)
+
 ## 学习规划
 
 [react-developer-roadmap：React开发人员路线图](https://github.com/adam-golab/react-developer-roadmap)

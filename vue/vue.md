@@ -31,6 +31,8 @@
 
 [vant](https://github.com/youzan/vant)
 
+[KangarooUI](http://kangarooui.waimai.meituan.com/2.0/extends/)
+
 ## vue-cli
 
 ```bash
