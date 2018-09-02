@@ -16,6 +16,8 @@
 
 > Object.entries
 
+> 模拟实现迭代器
+
 ## 解答
 
 #### 模拟实现call | apply | bind
