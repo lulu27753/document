@@ -56,9 +56,46 @@ func(3, 4)
 
 ### 借用其他对象的方法
 
-借用构造函数，从而实现一些类似继承的效果
+1. 借用构造函数，从而实现一些类似继承的效果
 
+```
+var A = function(name){
+	this.name = name
+}
+var B = function() {
+	A.apply(this, arguments)
+}
+B.prototype.getName = function(name) {
+	return this.name
+}
+var b = new B('lulu')
+console.log(b.getName()) // lulu
+```
 
+2. 操作arguments对象时借用Array.prototype上的方法
+
+- 向 arguments 中添加一个新的元素：Array.prototype.push.call(arguments, ...)
+- 把 arguments 转换成一个真的数组：Array.prototype.slice.call(arguments)
+- 截去 arguments 的头一个元素：Array.prototype.shift.call(arguments)
+
+```
+(function() {
+ 		Array.prototype.push.call(arguments, 3)
+ 		console.log(arguments) // [1,2,3]
+})(1,2)
+```
+```
+// V8 源码实现上面的代码
+function ArrayPush () {
+	var n = TO_UINT32(this.length) // 被 push 的对象的 length
+	var m = %_ArgumentsLength() // push 的参数个数
+	for (var i = 0; i < m; i++) {
+		this[n + i] = %_Arguments[i] // 对象本身要可以存取属性
+	}
+	this.length = n + m // 修正 length 属性的值
+	return this.length // 对象的 length 属性要可读写
+}
+```
 
 
 
