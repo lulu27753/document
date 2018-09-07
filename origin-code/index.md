@@ -15,3 +15,7 @@
 * [Underscore 源码分析](https://yoyoyohamapi.gitbooks.io/undersercore-analysis/content/)
 
 * [underscore-1.8.3.js 源码解读](https://github.com/hanzichi/underscore-analysis)
+
+## webpack
+
+* [minipack | 迷你库](https://github.com/ronami/minipack)

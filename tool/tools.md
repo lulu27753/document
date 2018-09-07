@@ -61,6 +61,14 @@
 
 * [CODING | 代码托管](https://coding.net/)
 
+* [VuePress 中文文档 | VuePress 中文网](https://www.vuepress.cn/)
+
+* [微友助手 | 免费微信机器人](https://www.weiyoubot.com/)
+
+* [CSS Drive CSS AutoPrefixer online Tool](http://www.cssdrive.com/cssautoprefixer/)
+
+* [VisuAlgo - 数据结构和算法动态可视化](https://visualgo.net/zh)
+
 ## 调试工具
 
 [Tencent/vConsole](https://github.com/Tencent/vConsole)
@@ -109,6 +117,15 @@
 * [Anki](https://apps.ankiweb.net/)
 
 * [Seafile](https://www.seafile.com/en/download/)
+
+* [goodnotes]
+
+* [notability]
+
+* [marginnote pro]
+
+* [算法动画图解]
+
 
 ## loader
 

@@ -276,14 +276,14 @@ alert(script1 === script2) // true
 AOP(面向切面编程)的主要作用是把一些跟核心业务逻辑模块无关的功能抽离出来，这些跟业务逻辑无关的功能通常包括日志统计、安全控制、异常处理等。
 ```
 Function.prototype.before = function(beforefn) {
-	var _self = this // 保存原函数的引用
+	var _self = this // 保存原函数的引用,this 值是func -> {console.log(2)}
 	return function() { // 返回包含了原函数和新函数的“代理”函数
-		beforefn.apply(this, arguments) // 执行新函数，修正this
+		beforefn.apply(this, arguments) // 执行新函数，修正this,this是window
 		return _self.apply(this, arguments) // 执行原函数
 	}
 }
 Function.prototype.after = function(afterfn) {
-	var _self = this
+	var _self = this // this 值是“代理”函数
 	return function() {
 		var ret = _self.apply(this, arguments)
 		afterfn.apply(this, arguments)
@@ -292,13 +292,229 @@ Function.prototype.after = function(afterfn) {
 }
 var func = function() {
 	console.log(2)
+	return 2
 }
 func = func.before(function() {
 	console.log(1)
+	return 1
 }).after(function() {
 	console.log(3)
+	return 3
 })
+func()
 ```
+
+### currying
+
+一个柯里化的函数首先会接受一些参数，接受了这些参数之后，该参数并不会立即求值，而是继续返回另一个函数，刚才传入的参数在函数形成的闭包中被保存起来。待到函数被真正需要求值的时候，之前传入的所有参数都会被一次性用于求值
+
+```
+var cost = (
+	var args = []
+	return function(){
+		if (arguments.length === 0){
+			var money = 0
+			for(var i = 0; i < args.length; i++) {
+				money += args[i]
+			}
+			return money
+		} else {
+			[].push.apply(args, arguments)
+		}
+	}
+)()
+cost(100) // 未真正求值
+cost(200) // 未真正求值
+cost(300) // 未真正求值
+
+console.log(cost())
+```
+
+```
+var currying = function(fn) {
+	var args = []
+	return function() {
+		if(arguments.length === 0){
+			return fn.apply(this, args)
+		} else {
+			[].push.apply(args, arguments)
+			console.log('arguments', arguments, arguments.callee )
+			return arguments.callee
+		}
+	}
+}
+var cost = (function(){
+	var money = 0
+	return function(){
+		for (var i = 0; i < arguments.length; i++) {
+			money += arguments[i]
+		}
+		return money
+	}
+})()
+
+var cost = currying(cost)
+
+cost(100) // 未真正求值
+cost(200) // 未真正求值
+cost(300) // 未真正求值
+
+alert(cost()) // 求值并输出： 600
+
+```
+
+```
+Function.prototype.uncurrying = function() {
+	var self = this
+	console.log(this)
+	return function() {
+		var obj = Array.prototype.shift.call(arguments)
+		console.log(arguments)
+		return self.apply(obj, arguments)
+	}
+}
+var push = Array.prototype.push.uncurrying()
+(function(){
+	push(arguments, 4)
+	console.log(arguments)
+})(1,2,3)
+``` 
+```
+Function.prototype.uncurrying = function() {
+	var self = this
+	return function() {
+		return Function.prototype.call.apply(self, arguments)
+	}
+}
+```
+
+```
+Function.prototype.uncurrying = function() {
+	var self = this
+	return function() {
+		var obj = Array.prototype.shift.call(arguments)
+		return self.apply(obj, arguments)
+	}
+}
+var Arg = {}
+for (var i = 0, fn, arr = ['push', 'shift', 'forEach']; fn = arr[i++];) {
+	console.log(fn)
+	Arg[fn] = Array.prototype[fn].uncurrying()
+}
+var obj = {
+	'length': 3,
+	'0': 1,
+	'1': 2,
+	'2': 3
+}
+Arg.push(obj, 4) // 向对象中添加一个元素
+console.log(obj.length) // 4
+
+
+```       
+
+### 函数节流
+
+有些情况下，函数的触发不是由用户直接控制的，这样当函数被非常频繁的调用时，会造成大的性能问题。
+
+#### 场景
+
+- window.onresize()：给window对象绑定了resize事件，当浏览器窗口大小被拖动而改变的时候，这个事件触发的频率非常之高。如果我们在window.onresize事件函数里有一些跟DOM节点相关的操作，而跟DOM节点相关的操作往往是非常消耗性能的，这时候浏览器可能就会吃不消而造成卡顿现象。
+- mousemove()：同样，给一个div节点绑定了拖拽事件(主要是mousemove),div节点被拖动的时候，也会频繁地触发该拖拽事件函数
+- 上传进度：微云的上传功能使用了一个浏览器插件。该插件在真正开始上传文件之前，会对文件进行扫描并随时通知JS函数，以便在页面中显示当前的扫描进度。但该插件通知的频率非常之高，约10s一次
+
+#### 原理
+
+当函数被触发的频率太高时，需要按时间段来忽略掉一些事件请求，借助setTimeout来完成
+
+将即将被执行的函数用setTimeout延迟一段时间执行。如果该次延迟执行还没有完成，则忽略接下来调用该函数的请求
+
+一定要等当前执行的事件执行完了，才会让新的事件进来，否则全部作废
+
+```
+var throttle = function(fn, interval) {
+	var _self = fn, // 保存需要被延迟执行的函数引用
+	timer, // 定时器
+	firstTime = true; // 是否是第一次调用
+	return function() {
+		var args = arguments,
+		_me = this;
+
+		if (firstTime) { // 如果是第一次调用，不需要延迟执行
+			_self.apply(_me, args)
+			return firstTime = false
+		}
+		if (timer) { // 如果定时器还在，说明前一次延迟执行还没有完成
+			return false
+		}
+		timer = setTimeout(function() { // 延迟一段时间执行
+			clearTimeout(timer)
+			timer = null
+			_self.apply(_me, args)
+		}, interval || 500)
+	}
+}
+window.onresize = throttle(function() {
+	console.log(1)
+}, 500)
+```
+
+### 函数防抖
+
+```
+
+```
+
+#### 场景
+
+- 搜索引擎搜索：希望用户在输入完最后一个字才调用查询接口，适用`延迟执行`的防抖函数，
+
+
+### 分时函数
+
+在短时间内大量触发请求会严重影响页面性能，解决方案之一是让这些请求分批进行，比如把1秒钟创建1000个节点，改为每隔200毫秒创建8个节点
+
+```
+// 创建节点时需要用到的数据
+// 封装了创建节点逻辑的函数
+// 每一批创建的节点数量
+var timeChunk = function(ary, fn, count) {
+	var obj, t
+	var len = ary.length
+
+	var start = function () {
+		for (var i = 0; i < Math.min(count || 1, ary.length); i++) {
+			var obj = ary.shift()
+			fn(obj)
+		}
+	}
+
+	return function() {
+		t = setInterval(function() {
+			if (ary.length === 0) { // 如果全部节点都已经被创建好
+				return clearInterval(t)
+			}
+			start()
+		}, 200) // 分批执行的时间间隔，也可以用参数的形式传入
+	}
+}
+```
+
+
+
+## 资源
+
+[7分钟理解JS的节流、防抖及使用场景](https://juejin.im/post/5b8de829f265da43623c4261?utm_source=gold_browser_extension)
+
+
+
+
+
+
+
+
+
+
 
 
 
